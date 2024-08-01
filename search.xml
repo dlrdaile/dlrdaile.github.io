@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>程序开发的开闭原则</title>
+    <url>/undefined/f0115136/</url>
+    <content><![CDATA[<h1 id="什么是开闭原则">什么是开闭原则</h1>
+<p>GPT的解释如下：</p>
+<blockquote>
+<p>开闭原则是面向对象设计中的一个重要原则，指的是软件实体（类、模块、函数等）应该对扩展开放，对修改关闭。这意味着一个软件实体应该通过扩展来实现新功能，而不是通过修改已有的代码来实现。这样做可以保持原有代码的稳定性，降低修改代码引入错误的风险，并且更容易维护和扩展软件系统。
+在程序开发中，遵循开闭原则可以通过以下方式实现：
+使用接口和抽象类定义可扩展的接口，通过实现接口或继承抽象类来新增功能，而不是修改原有代码。
+使用设计模式如策略模式、装饰器模式等来实现可插拔的功能，而不是直接修改现有代码。
+使用配置文件、扩展点等机制来实现功能的动态配置和扩展。
+避免硬编码具体实现，使用依赖注入等方式来实现松耦合，方便替换和扩展功能。</p>
+</blockquote>
+<p>简单而言开闭原则是软件功能的扩展尽可能通过外部模块进行而不是修改原来功能的源代码。
+<span id="more"></span><br />
+# 开闭原则的实现方法</p>
+<h2
+id="策略模式工厂模式模板模式的混合模式方案">策略模式+工厂模式+模板模式的混合模式方案</h2>
+<p>参考下面这个视频
+<iframe src="//player.bilibili.com/player.html?aid=456530918&bvid=BV1b5411a7oa&cid=220746663&p=1&autoplay=false&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="720">
+</iframe></p>
+<p>其中的关键是策略模式，通过使用策略的方式对不同的业务逻辑进行模块化开发，然后使用工厂模式调用策略实现核心代码的一致性，进一步为了实现策略方法的可复用，使用模板模式进行进一步的封装。</p>
+<h2 id="搭架子和串珠子">搭架子和串珠子</h2>
+<iframe src="//player.bilibili.com/player.html?aid=403664982&amp;bvid=BV1bV411K7Z2&amp;cid=1203166154&amp;autoplay=false&amp;high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="720">
+</iframe>
+<p>使用模板编程(类似于python中的装饰器功能)封装业务流，最后使用流程业务将不同的<code>"珠子"</code>串起来，开发框架的中间件和过滤器通常就使用这样的开发方式</p>
+]]></content>
+      <tags>
+        <tag>后端修炼的葵花宝典</tag>
+      </tags>
+  </entry>
+</search>
