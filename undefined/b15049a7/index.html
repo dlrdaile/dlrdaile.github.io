@@ -180,7 +180,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">19</span></a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">19</span></a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -231,7 +231,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%92%8C%E8%BF%90%E8%A1%8C"><span class="nav-number">2.</span> <span class="nav-text">编译和运行</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#go%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text"> Go的程序结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.</span> <span class="nav-text"> 注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%92%8C%E8%BF%90%E8%A1%8C"><span class="nav-number">3.</span> <span class="nav-text"> 编译和运行</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -257,7 +257,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -381,29 +381,61 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>本文主要介绍Go的程序结构，包括包声明、引入包、函数、变量、语句和表达式、注释等内容。
-<span id="more"></span> # Go的程序结构 * 包声明</p>
+    <div class="post-body" itemprop="articleBody"><p>本文主要介绍Go的程序结构，包括包声明、引入包、函数、变量、语句和表达式、注释等内容。</p>
+<span id="more"></span>
+<h1 id="go的程序结构"><a class="markdownIt-Anchor" href="#go的程序结构"></a> Go的程序结构</h1>
 <ul>
-<li><p>引入包</p></li>
-<li><p>函数</p></li>
-<li><p>变量</p></li>
-<li><p>语句和表达式</p></li>
-<li><p>注释</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hello.go</span></span><br><span class="line"><span class="comment">// package declaration</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// import package</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// function</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(a, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> a+b</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// global variable</span></span><br><span class="line"><span class="keyword">var</span> g <span class="type">int</span> = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  a, b := <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">  res := add(a, b)</span><br><span class="line">  fmt.Println(<span class="string">&quot;a=&quot;</span>, a, <span class="string">&quot;b=&quot;</span>, b, <span class="string">&quot;a+b=&quot;</span>, res)</span><br><span class="line">  fmt.Println(<span class="string">&quot;g=&quot;</span>, g)</span><br><span class="line">  fmt.Println(<span class="string">&quot;hello world!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>
+<p>包声明</p>
+</li>
+<li>
+<p>引入包</p>
+</li>
+<li>
+<p>函数</p>
+</li>
+<li>
+<p>变量</p>
+</li>
+<li>
+<p>语句和表达式</p>
+</li>
+<li>
+<p>注释</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hello.go</span></span><br><span class="line"><span class="comment">// package declaration</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// import package</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// function</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(a, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> a+b</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// global variable</span></span><br><span class="line"><span class="keyword">var</span> g <span class="type">int</span> = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  a, b := <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">  res := add(a, b)</span><br><span class="line">  fmt.Println(<span class="string">&quot;a=&quot;</span>, a, <span class="string">&quot;b=&quot;</span>, b, <span class="string">&quot;a+b=&quot;</span>, res)</span><br><span class="line">  fmt.Println(<span class="string">&quot;g=&quot;</span>, g)</span><br><span class="line">  fmt.Println(<span class="string">&quot;hello world!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h1 id="注意事项">注意事项</h1>
+<h1 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h1>
 <ul>
-<li><p>func main()是程序开始执行的函数(但是如果有func
-init()函数，则会先执行init函数，再执行main函数)</p></li>
-<li><p>源程序文件所在的目录名称与包名称没有直接关系，不需要一致。不过通常保持一致，这符合Go的编码规范。</p></li>
-<li><p>源程序文件名与包名没有直接关系，不需要将源程序文件名与文件开头申明的包名保持一样，通常这2者是不一样的。</p></li>
-<li><p>只有在源程序文件开头声明package main，并且有func
-main()定义，才能生成可执行程序，否则go run file.go会报错，报错内容:</p>
-<figure class="highlight plaintext"><figcaption><span>command-line-arguments is not a main packagego</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">package command-line-arguments is not a main package</span><br><span class="line">和</span><br><span class="line">runtime.main_main·f: function main is undeclared in the main package</span><br></pre></td></tr></table></figure></li>
+<li>
+<p>func main()是程序开始执行的函数(但是如果有func init()函数，则会先执行init函数，再执行main函数)</p>
+</li>
+<li>
+<p>源程序文件所在的目录名称与包名称没有直接关系，不需要一致。不过通常保持一致，这符合Go的编码规范。</p>
+</li>
+<li>
+<p>源程序文件名与包名没有直接关系，不需要将源程序文件名与文件开头申明的包名保持一样，通常这2者是不一样的。</p>
+</li>
+<li>
+<p>只有在源程序文件开头声明package main，并且有func main()定义，才能生成可执行程序，否则go run file.go会报错，报错内容:</p>
+<figure class="highlight plaintext"><figcaption><span>command-line-arguments is not a main packagego</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">package command-line-arguments is not a main package</span><br><span class="line">和</span><br><span class="line">runtime.main_main·f: function main is undeclared in the main package</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h1 id="编译和运行">编译和运行</h1>
-<p>Go是编译型语言 * 编译+运行分步执行 * go build hello.go * ./hello *
-编译+运行一步到位 * go run hello.go</p>
+<h1 id="编译和运行"><a class="markdownIt-Anchor" href="#编译和运行"></a> 编译和运行</h1>
+<p>Go是编译型语言</p>
+<ul>
+<li>编译+运行分步执行
+<ul>
+<li>go build hello.go</li>
+<li>./hello</li>
+</ul>
+</li>
+<li>编译+运行一步到位
+<ul>
+<li>go run hello.go</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -420,13 +452,13 @@ main()定义，才能生成可执行程序，否则go run file.go会报错，报
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/undefined/717b940e/" rel="prev" title="04.Go中的变量">
-                  <i class="fa fa-angle-left"></i> 04.Go中的变量
+                <a href="/undefined/b52965b/" rel="prev" title="03.Go的基础数据类型">
+                  <i class="fa fa-angle-left"></i> 03.Go的基础数据类型
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/undefined/b52965b/" rel="next" title="03.Go的基础数据类型">
-                  03.Go的基础数据类型 <i class="fa fa-angle-right"></i>
+                <a href="/undefined/e6208f17/" rel="next" title="06.Go中的运算符">
+                  06.Go中的运算符 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

@@ -118,11 +118,15 @@
 <meta property="og:site_name" content="A乐小屋">
 <meta property="og:description" content="本文主要介绍如何在Linux系统下安装Go开发环境，以及如何配置VS Code开发工具。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeimage-20240811192036599.png">
+<meta property="og:image" content="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeimage-20240811192914982.png">
 <meta property="article:published_time" content="2024-08-11T10:47:35.000Z">
-<meta property="article:modified_time" content="2024-08-12T00:21:04.471Z">
+<meta property="article:modified_time" content="2024-08-12T00:46:24.672Z">
 <meta property="article:author" content="dl">
 <meta property="article:tag" content="Golang">
+<meta property="article:tag" content="环境配置">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeimage-20240811192036599.png">
 
 
 <link rel="canonical" href="https://dlrdaile.github.io/undefined/3c040810/">
@@ -180,7 +184,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">19</span></a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">19</span></a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -231,7 +235,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#linux-%E4%B8%8B%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">Linux 下安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">配置环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-vs-code"><span class="nav-number"></span> <span class="nav-text">开发工具 VS Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA-go-%E7%A8%8B%E5%BA%8F"><span class="nav-number"></span> <span class="nav-text">第一个 Go 程序</span></a></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#go-%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text"> Go 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#linux-%E4%B8%8B%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text"> Linux 下安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text"> 配置环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7-vs-code"><span class="nav-number">2.</span> <span class="nav-text"> 开发工具 VS Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA-go-%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text"> 第一个 Go 程序</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -257,7 +261,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -345,7 +349,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-12 08:21:04" itemprop="dateModified" datetime="2024-08-12T08:21:04+08:00">2024-08-12</time>
+      <time title="修改时间：2024-08-12 08:46:24" itemprop="dateModified" datetime="2024-08-12T08:46:24+08:00">2024-08-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -357,7 +361,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Golang/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">环境配置</span></a>
+          <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">环境配置</span></a>
         </span>
     </span>
 
@@ -385,67 +389,50 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>本文主要介绍如何在Linux系统下安装Go开发环境，以及如何配置VS
-Code开发工具。 <span id="more"></span><br />
-## Go 安装</p>
+    <div class="post-body" itemprop="articleBody"><p>本文主要介绍如何在Linux系统下安装Go开发环境，以及如何配置VS Code开发工具。</p>
+<span id="more"></span>  
+<h2 id="go-安装"><a class="markdownIt-Anchor" href="#go-安装"></a> Go 安装</h2>
 <p>下载地址：</p>
 <ul>
-<li>Go 官网下载地址：https://golang.org/dl/</li>
-<li>Go 官方镜像站（推荐）：https://golang.google.cn/dl/</li>
+<li>Go 官网下载地址：<a target="_blank" rel="noopener" href="https://golang.org/dl/">https://golang.org/dl/</a></li>
+<li>Go 官方镜像站（推荐）：<a target="_blank" rel="noopener" href="https://golang.google.cn/dl/">https://golang.google.cn/dl/</a></li>
 </ul>
-<p><img
-src="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeimage-20240811192036599.png"
-alt="image-20240811192036599" />直接安装最新版本
-go1.22.6，后续文章都会在此版本下开发，测试。</p>
-<h3 id="linux-下安装">Linux 下安装</h3>
+<p><img src="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeimage-20240811192036599.png" alt="image-20240811192036599" />直接安装最新版本 go1.22.6，后续文章都会在此版本下开发，测试。</p>
+<h3 id="linux-下安装"><a class="markdownIt-Anchor" href="#linux-下安装"></a> Linux 下安装</h3>
 <p>下载安装包：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://golang.google.cn/dl/go1.22.6.linux-amd64.tar.gz</span><br></pre></td></tr></table></figure>
 <p>解压到 /usr/local 目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo tar -zxvf go1.22.6.linux-amd64.tar.gz -C /usr/local</span><br></pre></td></tr></table></figure>
-<p>然后配置环境变量，打开 $HOME/.bash_profile
-文件，增加下面两行代码：</p>
+<p>然后配置环境变量，打开 $HOME/.bash_profile 文件，增加下面两行代码：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOROOT=/usr/local/go</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOROOT</span>/bin</span><br></pre></td></tr></table></figure>
 <p>最后使环境变量生效：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> <span class="variable">$HOME</span>/.bash_profile</span><br></pre></td></tr></table></figure>
 <p>安装完成后，在终端执行查看版本命令，如果能正确输出版本信息，那就说明安装成功了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go version</span><br><span class="line">go version go1.22.6 linux/amd64</span><br></pre></td></tr></table></figure>
-<h3 id="配置环境变量">配置环境变量</h3>
-<p><code>GOROOT</code> 和 <code>GOPATH</code> 都是环境变量，其中
-<code>GOROOT</code> 是我们安装 Go 开发包的路径，<code>GOPATH</code>
-会有一个默认目录。</p>
-<p>由于 go1.11 之后使用 go mod 来管理依赖包，不再强制我们必须把代码写在
-<code>GOPATH/src</code> 目录下，所以使用默认即可，无需修改。</p>
-<p>默认 <code>GOPROXY</code> 配置是
-<code>GOPROXY=https://proxy.golang.org,direct</code>，由于国内访问不到，所以我们需要换一个
-PROXY，这里推荐使用：</p>
-<ol type="1">
-<li>https://goproxy.io</li>
-<li>https://goproxy.cn</li>
+<h3 id="配置环境变量"><a class="markdownIt-Anchor" href="#配置环境变量"></a> 配置环境变量</h3>
+<p><code>GOROOT</code> 和 <code>GOPATH</code> 都是环境变量，其中 <code>GOROOT</code> 是我们安装 Go 开发包的路径，<code>GOPATH</code> 会有一个默认目录。</p>
+<p>由于 go1.11 之后使用 go mod 来管理依赖包，不再强制我们必须把代码写在 <code>GOPATH/src</code> 目录下，所以使用默认即可，无需修改。</p>
+<p>默认 <code>GOPROXY</code> 配置是 <code>GOPROXY=https://proxy.golang.org,direct</code>，由于国内访问不到，所以我们需要换一个 PROXY，这里推荐使用：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://goproxy.io">https://goproxy.io</a></li>
+<li><a target="_blank" rel="noopener" href="https://goproxy.cn">https://goproxy.cn</a></li>
 </ol>
 <p>配置 <code>GOPROXY</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go <span class="built_in">env</span> -w GO111MODULE=on</span><br><span class="line">$ go <span class="built_in">env</span> -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
 <p>go mod 先这样配置就可以了，后续再来写文章详细介绍。</p>
-<h2 id="开发工具-vs-code">开发工具 VS Code</h2>
-<p>开发工具可以根据自己的喜好来，可以用 Goland，VS Code，当然 Vim
-也可以。</p>
+<h2 id="开发工具-vs-code"><a class="markdownIt-Anchor" href="#开发工具-vs-code"></a> 开发工具 VS Code</h2>
+<p>开发工具可以根据自己的喜好来，可以用 Goland，VS Code，当然 Vim 也可以。</p>
 <p>我比较喜欢 VS Code，插件丰富，而且免费。</p>
-<p>官方下载地址：https://code.visualstudio.com/Download</p>
+<p>官方下载地址：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/Download">https://code.visualstudio.com/Download</a></p>
 <p>安装 Go 插件，并重启：</p>
-<figure>
-<img
-src="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeimage-20240811192914982.png"
-alt="image-20240811192914982" />
-<figcaption aria-hidden="true">image-20240811192914982</figcaption>
-</figure>
-<h2 id="第一个-go-程序">第一个 Go 程序</h2>
+<p><img src="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeimage-20240811192914982.png" alt="image-20240811192914982" /></p>
+<h2 id="第一个-go-程序"><a class="markdownIt-Anchor" href="#第一个-go-程序"></a> 第一个 Go 程序</h2>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/ <span class="number">00</span>_hello.<span class="keyword">go</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> main  <span class="comment">// 声明 main 包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span>  <span class="comment">// 导入内置 fmt 包</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;  <span class="comment">// main函数，程序执行入口</span></span><br><span class="line">    fmt.Println(<span class="string">&quot;Hello World!&quot;</span>)  <span class="comment">// 在终端打印 Hello World!</span></span><br></pre></td></tr></table></figure>
 <p>使用 <code>go build</code> 命令编译：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ go build 00_hello.go</span><br><span class="line">$ <span class="built_in">ls</span></span><br><span class="line">00_hello  00_hello.go go.mod</span><br></pre></td></tr></table></figure>
-<p>可以看到在目录下生成了可执行文件
-<code>00_hello</code>，然后运行一下试试：</p>
+<p>可以看到在目录下生成了可执行文件 <code>00_hello</code>，然后运行一下试试：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./00_hello</span><br><span class="line">Hello World!</span><br></pre></td></tr></table></figure>
-<p>还可以直接使用 <code>go run</code>
-命令来执行代码，在调试的时候更加方便。</p>
+<p>还可以直接使用 <code>go run</code> 命令来执行代码，在调试的时候更加方便。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go run 00_hello.go</span><br><span class="line">Hello World!</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -457,6 +444,7 @@ alt="image-20240811192914982" />
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Golang/" rel="tag"><i class="fa fa-tag"></i> Golang</a>
+              <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="tag"><i class="fa fa-tag"></i> 环境配置</a>
           </div>
 
         
