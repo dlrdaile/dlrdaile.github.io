@@ -111,26 +111,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"dlrdaile.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="观察着、体验着、前进着">
-<meta property="og:type" content="website">
-<meta property="og:title" content="A乐小屋">
-<meta property="og:url" content="https://dlrdaile.github.io/archives/2024/index.html">
+    <meta name="description" content="本文主要介绍Go中常量的定义方法和使用注意事项，包括常量的定义、iota的使用、常量的枚举等内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05.Go中的常量">
+<meta property="og:url" content="https://dlrdaile.github.io/undefined/6c20ce37/index.html">
 <meta property="og:site_name" content="A乐小屋">
-<meta property="og:description" content="观察着、体验着、前进着">
+<meta property="og:description" content="本文主要介绍Go中常量的定义方法和使用注意事项，包括常量的定义、iota的使用、常量的枚举等内容。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-11T11:38:38.000Z">
+<meta property="article:modified_time" content="2024-08-12T00:19:19.116Z">
 <meta property="article:author" content="dl">
-<meta property="article:tag" content="思考 成长 记录">
+<meta property="article:tag" content="Golang">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://dlrdaile.github.io/archives/2024/">
+<link rel="canonical" href="https://dlrdaile.github.io/undefined/6c20ce37/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2024/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://dlrdaile.github.io/undefined/6c20ce37/","path":"undefined/6c20ce37/","title":"05.Go中的常量"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | A乐小屋</title>
+<title>05.Go中的常量 | A乐小屋</title>
   
 
 
@@ -163,7 +165,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">A乐小屋</h1>
+      <p class="site-title">A乐小屋</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -216,7 +218,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -229,6 +231,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">常量</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -278,232 +281,156 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 19 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2024<span class="collection-year-count">19</span></span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dlrdaile.github.io/undefined/6c20ce37/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/Dinosaur.png">
+      <meta itemprop="name" content="dl">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="A乐小屋">
+      <meta itemprop="description" content="观察着、体验着、前进着">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="05.Go中的常量 | A乐小屋">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          05.Go中的常量
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-11 19:38:38" itemprop="dateCreated datePublished" datetime="2024-08-11T19:38:38+08:00">2024-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-12 08:19:19" itemprop="dateModified" datetime="2024-08-12T08:19:19+08:00">2024-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Golang/" itemprop="url" rel="index"><span itemprop="name">Golang</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>457</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>本文主要介绍Go中常量的定义方法和使用注意事项，包括常量的定义、iota的使用、常量的枚举等内容。
+<span id="more"></span></p>
+<h1 id="常量">常量</h1>
+<ul>
+<li><p>常量定义的时候必须赋值，定义后值不能被修改</p></li>
+<li><p>常量(包括全局常量和局部常量)可以定义后不使用，局部变量定义后必须使用，否则编译报错</p></li>
+<li><p>常量可以用来定义枚举</p></li>
+<li><p>iota，特殊常量，可以理解为const语句块里的行索引，值从0开始</p></li>
+<li><p>常量的定义方法</p>
+<ul>
+<li><p>方法1</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a <span class="type">int</span> = <span class="number">10</span></span><br><span class="line"><span class="keyword">const</span> b <span class="type">bool</span> = <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
+<li><p>方法2</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">10</span></span><br><span class="line"><span class="keyword">const</span> b = <span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
+<li><p>多个常量同时定义</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a, b <span class="type">int</span> = <span class="number">1</span>, <span class="number">2</span></span><br></pre></td></tr></table></figure></li>
+<li><p>iota，特殊常量，可以理解为每个独立的const语句块里的行索引</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a <span class="type">int</span> = <span class="literal">iota</span> <span class="comment">// the value of a is 0</span></span><br><span class="line"><span class="keyword">const</span> b = <span class="literal">iota</span> <span class="comment">// the value of b is still 0</span></span><br></pre></td></tr></table></figure></li>
+<li><p>定义枚举方法1</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">  unknown = <span class="number">0</span></span><br><span class="line">  male = <span class="number">1</span></span><br><span class="line">  female = <span class="number">2</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li><p>定义枚举方法2</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">  unknown = <span class="literal">iota</span> <span class="comment">// the value of unknown is 0</span></span><br><span class="line">  male <span class="comment">// the value of male is 1</span></span><br><span class="line">  female <span class="comment">// the value of female is 2</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">  c1 = <span class="literal">iota</span> <span class="comment">// the value of c1 is 0</span></span><br><span class="line">  c2 = <span class="literal">iota</span> <span class="comment">// the value of c2 is 1</span></span><br><span class="line">  c3 = <span class="literal">iota</span> <span class="comment">// the value of c3 is 2</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+<li><p>注意事项</p>
+<ul>
+<li>iota的值是const语句块里的行索引，行索引从0开始</li>
+<li>const语句块里，如果常量没赋值，那它的值和上面的保持一样，比如下面的例子里class2=0,
+class6="abc"</li>
+<li>某个常量赋值为iota后，紧随其后的常量如果没赋值，那后面常量的值是自动+1，比如下面的例子里，class3的值是iota，该行的行索引是2，所以class3=2，
+class4常量紧随其后没有赋值，那class4=class3+1=3</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	class1 = <span class="number">0</span></span><br><span class="line">	class2 <span class="comment">// class2 = 0</span></span><br><span class="line">	class3 = <span class="literal">iota</span>  <span class="comment">//iota is 2, so class3 = 2</span></span><br><span class="line">	class4 <span class="comment">// class4 = 3</span></span><br><span class="line">	class5 = <span class="string">&quot;abc&quot;</span> </span><br><span class="line">	class6 <span class="comment">// class6 = &quot;abc&quot;</span></span><br><span class="line">	class7 = <span class="literal">iota</span> <span class="comment">// class7 is 6</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-11T20:51:49+08:00"
-              content="2024-08-11">
-          08-11
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/undefined/5d128426/" itemprop="url">
-            <span itemprop="name">Go-cli</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Golang/" rel="tag"><i class="fa fa-tag"></i> Golang</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/undefined/3c040810/" rel="prev" title="01.Go环境配置">
+                  <i class="fa fa-angle-left"></i> 01.Go环境配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/undefined/717b940e/" rel="next" title="04.Go中的变量">
+                  04.Go中的变量 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-11T20:44:37+08:00"
-              content="2024-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/undefined/362a394c/" itemprop="url">
-            <span itemprop="name">17.Go-defer语义</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-11T20:41:26+08:00"
-              content="2024-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/undefined/f28eaa9a/" itemprop="url">
-            <span itemprop="name">16.Go-接口interface</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-11T20:38:56+08:00"
-              content="2024-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/undefined/c6b790b1/" itemprop="url">
-            <span itemprop="name">15.Go-map集合</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-11T20:37:05+08:00"
-              content="2024-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/undefined/57393c42/" itemprop="url">
-            <span itemprop="name">14.Gorange迭代</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-11T20:34:46+08:00"
-              content="2024-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/undefined/fe31314e/" itemprop="url">
-            <span itemprop="name">13.Go切片Slice</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-11T20:33:46+08:00"
-              content="2024-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/undefined/ffa5bf91/" itemprop="url">
-            <span itemprop="name">12.Go结构体</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-11T20:29:18+08:00"
-              content="2024-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/undefined/d36541d4/" itemprop="url">
-            <span itemprop="name">11.Go指针</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-11T20:26:41+08:00"
-              content="2024-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/undefined/7bc5e1cb/" itemprop="url">
-            <span itemprop="name">10.Go数组</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-11T20:10:28+08:00"
-              content="2024-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/undefined/66c36c37/" itemprop="url">
-            <span itemprop="name">09.Go函数，闭包和方法</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2024/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/archives/2024/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+
+
+
 
 </div>
   </main>
