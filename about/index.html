@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/Dinosaur.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/Dinosaur.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dlrdaile.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="戴乐个人介绍 姓名：戴乐 现居地：北京 说两句：见路不走，有路先走 教育背景  2019.09 - 2023.06，北京理工大学，智能制造工程本科，成绩90.59（4&#x2F;26），专业课程成绩优异，如运筹学91分、数据库94分等。 2023.09 - 至今，北京理工大学，机械工程硕士，专注前沿科研方向。  技能专长  编程：熟练掌握Python、C#、C&#x2F;C++、SQL，了解Java、Golang基础">
+<meta property="og:type" content="website">
+<meta property="og:title" content="鄙人何许人也">
+<meta property="og:url" content="https://dlrdaile.github.io/about/index.html">
+<meta property="og:site_name" content="A乐小屋">
+<meta property="og:description" content="戴乐个人介绍 姓名：戴乐 现居地：北京 说两句：见路不走，有路先走 教育背景  2019.09 - 2023.06，北京理工大学，智能制造工程本科，成绩90.59（4&#x2F;26），专业课程成绩优异，如运筹学91分、数据库94分等。 2023.09 - 至今，北京理工大学，机械工程硕士，专注前沿科研方向。  技能专长  编程：熟练掌握Python、C#、C&#x2F;C++、SQL，了解Java、Golang基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-17T02:43:03.000Z">
+<meta property="article:modified_time" content="2025-02-17T03:08:12.895Z">
+<meta property="article:author" content="dl">
+<meta property="article:tag" content="思考 成长 记录">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://dlrdaile.github.io/about/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://dlrdaile.github.io/about/index.html","path":"about/index.html","title":"鄙人何许人也"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>鄙人何许人也 | A乐小屋
+</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">A乐小屋</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%B4%E4%B9%90%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">戴乐个人介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%99%E8%82%B2%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">教育背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E8%83%BD%E4%B8%93%E9%95%BF"><span class="nav-number">1.2.</span> <span class="nav-text">技能专长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86"><span class="nav-number">1.3.</span> <span class="nav-text">项目经历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8D%A3%E8%AA%89%E5%A5%96%E9%A1%B9"><span class="nav-number">1.4.</span> <span class="nav-text">荣誉奖项</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dl"
+      src="/img/Dinosaur.png">
+  <p class="site-author-name" itemprop="name">dl</p>
+  <div class="site-description" itemprop="description">观察着、体验着、前进着</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dlrdaile" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dlrdaile" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/dle467866@gmail.com" title="E-Mail → dle467866@gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">鄙人何许人也
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h1 id="戴乐个人介绍">戴乐个人介绍</h1>
+<p><strong>姓名</strong>：戴乐</p>
+<p><strong>现居地</strong>：北京</p>
+<p><strong>说两句</strong>：见路不走，有路先走</p>
+<h2 id="教育背景"><strong>教育背景</strong></h2>
+<ul>
+<li>2019.09 -
+2023.06，北京理工大学，智能制造工程本科，成绩90.59（4/26），专业课程成绩优异，如运筹学91分、数据库94分等。</li>
+<li>2023.09 - 至今，北京理工大学，机械工程硕士，专注前沿科研方向。</li>
+</ul>
+<h2 id="技能专长"><strong>技能专长</strong></h2>
+<ul>
+<li><strong>编程</strong>：熟练掌握Python、C#、C/C++、SQL，了解Java、Golang基础语法。</li>
+<li><strong>数据处理</strong>：精通Python数据抓取、清洗、分析、挖掘及可视化，擅长深度学习模型搭建与优化。</li>
+<li><strong>后端开发</strong>：熟练运用ASP.Net
+Core和FastApi框架，具备丰富数据库使用经验，掌握领域驱动设计，熟悉中间件，开发过多种业务系统。</li>
+<li><strong>服务运维</strong>：熟悉Linux系统，掌握nginx、ssh等工具，具备镜像仓库、CICD及1Panel服务部署运维能力。</li>
+<li><strong>其他</strong>：熟练使用AI辅助编程，具备产品思维，熟悉敏捷开发。</li>
+</ul>
+<h2 id="项目经历"><strong>项目经历</strong></h2>
+<ul>
+<li><strong>智能工厂订单调度与AGV执行监控系统（2022.02 -
+2022.07）</strong>：担任组长，负责项目管理、AGV全栈开发及订单服务前后端开发。实现高效订单调度与AGV自主导航监控，项目成果出色。项目地址：<a
+target="_blank" rel="noopener" href="https://github.com/dlrdaile/agv_project">https://github.com/dlrdaile/agv_project</a>。</li>
+<li><strong>舍弗勒工业智慧城系统（2023.06 -
+2024.05）</strong>：负责技术设计、后端实现、数据处理与代码运维，助力项目完成数字化营销。</li>
+<li><strong>MagicHand——新一代智能脑控手部康复系统（2022.09 -
+2023.05）</strong>：担任组长，主导技术研发。项目获奖众多，获投资关注。</li>
+<li><strong>悖论循环：西九龙行动（2024.04 -
+2024.04）</strong>：参与黑客松大赛，负责前后端开发。36小时完成项目并夺冠获奖。推送链接：<a
+target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/7em_Y9_MDvryqJFVK61A-A">https://mp.weixin.qq.com/s/7em_Y9_MDvryqJFVK61A-A</a>
+。</li>
+</ul>
+<h2 id="荣誉奖项"><strong>荣誉奖项</strong></h2>
+<ul>
+<li>2020年11月，获北京市大学生物理竞赛一等奖。</li>
+<li>2021年09月，获工业工程类专业优秀课程设计全国优秀奖（清华IE亮剑优秀课程设计赛道全国二等奖）。</li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">dl</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">48k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:56</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

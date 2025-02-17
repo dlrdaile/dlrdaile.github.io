@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/Dinosaur.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/Dinosaur.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dlrdaile.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本文主要介绍Go的sync&#x2F;atomic包的使用方法、定义、方法等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="24.并发编程之原子操作sync&#x2F;atomic">
+<meta property="og:url" content="https://dlrdaile.github.io/undefined/cd2f42bc/index.html">
+<meta property="og:site_name" content="A乐小屋">
+<meta property="og:description" content="本文主要介绍Go的sync&#x2F;atomic包的使用方法、定义、方法等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-12T09:50:15.000Z">
+<meta property="article:modified_time" content="2025-02-17T02:29:45.717Z">
+<meta property="article:author" content="dl">
+<meta property="article:tag" content="Golang">
+<meta property="article:tag" content="并发编程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://dlrdaile.github.io/undefined/cd2f42bc/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://dlrdaile.github.io/undefined/cd2f42bc/","path":"undefined/cd2f42bc/","title":"24.并发编程之原子操作sync/atomic"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>24.并发编程之原子操作sync/atomic | A乐小屋</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">A乐小屋</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9Csyncatomic"><span class="nav-number">1.</span> <span class="nav-text">并发编程之原子操作sync&#x2F;atomic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#syncatomic%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">sync&#x2F;atomic定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.1.</span> <span class="nav-text">5种类型的原子操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#value%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">Value类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syncatomic%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.2.</span> <span class="nav-text">sync&#x2F;atomic实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#swap%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.1.</span> <span class="nav-text">swap操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compare-and-swap%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.2.</span> <span class="nav-text">compare-and-swap操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.3.</span> <span class="nav-text">add操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#load%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.4.</span> <span class="nav-text">load操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#store%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.5.</span> <span class="nav-text">store操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#value%E7%B1%BB%E5%9E%8B-1"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">Value类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%92%8C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">总结和注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">1.4.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dl"
+      src="/img/Dinosaur.png">
+  <p class="site-author-name" itemprop="name">dl</p>
+  <div class="site-description" itemprop="description">观察着、体验着、前进着</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dlrdaile" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dlrdaile" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/dle467866@gmail.com" title="E-Mail → dle467866@gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/undefined/b52965b/" rel="bookmark">
+        <time class="popular-posts-time">2024-08-11</time>
+        <br>
+      03.Go的基础数据类型
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/undefined/57393c42/" rel="bookmark">
+        <time class="popular-posts-time">2024-08-11</time>
+        <br>
+      14.Gorange迭代
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dlrdaile.github.io/undefined/cd2f42bc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/Dinosaur.png">
+      <meta itemprop="name" content="dl">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="A乐小屋">
+      <meta itemprop="description" content="观察着、体验着、前进着">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="24.并发编程之原子操作sync/atomic | A乐小屋">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          24.并发编程之原子操作sync/atomic
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-12 17:50:15" itemprop="dateCreated datePublished" datetime="2024-08-12T17:50:15+08:00">2024-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-17 10:29:45" itemprop="dateModified" datetime="2025-02-17T10:29:45+08:00">2025-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Golang/" itemprop="url" rel="index"><span itemprop="name">Golang</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Golang/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">并发编程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>本文主要介绍Go的sync/atomic包的使用方法、定义、方法等。
+<span id="more"></span></p>
+<h1 id="并发编程之原子操作syncatomic">并发编程之原子操作sync/atomic</h1>
+<h2 id="syncatomic定义">sync/atomic定义</h2>
+<p>官方文档地址：https://pkg.go.dev/sync/atomic@go1.18.1</p>
+<p>Go语言标准库中的<code>sync/atomic</code>包提供了偏底层的原子内存原语(atomic
+memory primitives)
+，用于实现同步算法，其本质是将底层CPU提供的原子操作指令封装成了Go函数。</p>
+<p>使用<code>sync/atomic</code>提供的原子操作可以确保在任意时刻只有一个goroutine对变量进行操作，避免并发冲突。</p>
+<p>使用<code>sync/atomic</code>需要特别小心，Go官方建议只有在一些偏底层的应用场景里才去使用<code>sync/atomic</code>，其它场景建议使用<code>channel</code>
+或者<code>sync</code>包里的锁。</p>
+<blockquote>
+<p>Share memory by communicating; don't communicate by sharing
+memory.</p>
+</blockquote>
+<p><code>sync/atomic</code>提供了5种类型的原子操作和1个<code>Value</code>类型。</p>
+<h3 id="种类型的原子操作">5种类型的原子操作</h3>
+<ul>
+<li>swap操作：<code>SwapXXX</code></li>
+<li>compare-and-swap操作：<code>CompareAndSwapXXX</code></li>
+<li>add操作：<code>AddXXX</code></li>
+<li>load操作：<code>LoadXXX</code></li>
+<li>store操作：<code>StoreXXX</code></li>
+</ul>
+<p>这几种类型的原子操作只支持几个基本的数据类型。</p>
+<p>add操作的<code>Addxxx</code>函数只支持<code>int32</code>,
+<code>int64</code>, <code>uint32</code>, <code>uint64</code>,
+<code>uintptr</code>这5种基本数据类型。</p>
+<p>其它类型的操作函数只支持<code>int32</code>, <code>int64</code>,
+<code>uint32</code>, <code>uint64</code>, <code>uintptr</code>,
+<code>unsafe.Pointer</code>这6种基本数据类型。</p>
+<h3 id="value类型">Value类型</h3>
+<p>由于上面5种类型的原子操作只支持几种基本的数据类型，因此为了扩大原子操作的使用范围，Go团队在1.4版本的<code>sync/atomic</code>
+包中引入了一个新的类型<code>Value</code>。<code>Value</code>类型可以用来读取(Load)和修改(Store)<strong>任意类型</strong>的值。</p>
+<p>Go
+1.4版本的<code>Value</code>类型只有<code>Load</code>和<code>Store</code>2个方法，Go
+1.17版本又给<code>Value</code>类型新增了<code>CompareAndSwap</code>和<code>Swap</code>这2个新方法。</p>
+<h2 id="syncatomic实践">sync/atomic实践</h2>
+<h3 id="swap操作">swap操作</h3>
+<p>swap操作支持<code>int32</code>, <code>int64</code>,
+<code>uint32</code>, <code>uint64</code>, <code>uintptr</code>,
+<code>unsafe.Pointer</code>这6种基本数据类型，对应有6个swap操作函数。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SwapInt32</span><span class="params">(addr *<span class="type">int32</span>, <span class="built_in">new</span> <span class="type">int32</span>)</span></span> (old <span class="type">int32</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SwapInt64</span><span class="params">(addr *<span class="type">int64</span>, <span class="built_in">new</span> <span class="type">int64</span>)</span></span> (old <span class="type">int64</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SwapPointer</span><span class="params">(addr *unsafe.Pointer, <span class="built_in">new</span> unsafe.Pointer)</span></span> (old unsafe.Pointer)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SwapUint32</span><span class="params">(addr *<span class="type">uint32</span>, <span class="built_in">new</span> <span class="type">uint32</span>)</span></span> (old <span class="type">uint32</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SwapUint64</span><span class="params">(addr *<span class="type">uint64</span>, <span class="built_in">new</span> <span class="type">uint64</span>)</span></span> (old <span class="type">uint64</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SwapUintptr</span><span class="params">(addr *<span class="type">uintptr</span>, <span class="built_in">new</span> <span class="type">uintptr</span>)</span></span> (old <span class="type">uintptr</span>)</span><br></pre></td></tr></table></figure>
+<p>swap操作实现的功能是把<code>addr</code>
+指针指向的内存里的值替换为新值<code>new</code>，然后返回旧值<code>old</code>，是如下伪代码的原子实现：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">old = *addr</span><br><span class="line">*addr = <span class="built_in">new</span></span><br><span class="line"><span class="keyword">return</span> old</span><br></pre></td></tr></table></figure>
+<p>我们拿<code>SwapInt32</code>举个例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync/atomic&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> newValue <span class="type">int32</span> = <span class="number">200</span></span><br><span class="line">	<span class="keyword">var</span> dst <span class="type">int32</span> = <span class="number">100</span></span><br><span class="line">	<span class="comment">// 把dst的值替换为newValue</span></span><br><span class="line">	old := atomic.SwapInt32(&amp;dst, newValue)</span><br><span class="line">	<span class="comment">// 打印结果</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;old value: &quot;</span>, old, <span class="string">&quot; new value:&quot;</span>, dst)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面程序的执行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">old value:  100  new value: 200</span><br></pre></td></tr></table></figure>
+<h3 id="compare-and-swap操作">compare-and-swap操作</h3>
+<p>compare-and-swap(CAS)操作支持<code>int32</code>, <code>int64</code>,
+<code>uint32</code>, <code>uint64</code>, <code>uintptr</code>,
+<code>unsafe.Pointer</code>
+这6种基本数据类型，对应有6个compare-and-swap操作函数。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CompareAndSwapInt32</span><span class="params">(addr *<span class="type">int32</span>, old, <span class="built_in">new</span> <span class="type">int32</span>)</span></span> (swapped <span class="type">bool</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CompareAndSwapInt64</span><span class="params">(addr *<span class="type">int64</span>, old, <span class="built_in">new</span> <span class="type">int64</span>)</span></span> (swapped <span class="type">bool</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CompareAndSwapPointer</span><span class="params">(addr *unsafe.Pointer, old, <span class="built_in">new</span> unsafe.Pointer)</span></span> (swapped <span class="type">bool</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CompareAndSwapUint32</span><span class="params">(addr *<span class="type">uint32</span>, old, <span class="built_in">new</span> <span class="type">uint32</span>)</span></span> (swapped <span class="type">bool</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CompareAndSwapUint64</span><span class="params">(addr *<span class="type">uint64</span>, old, <span class="built_in">new</span> <span class="type">uint64</span>)</span></span> (swapped <span class="type">bool</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CompareAndSwapUintptr</span><span class="params">(addr *<span class="type">uintptr</span>, old, <span class="built_in">new</span> <span class="type">uintptr</span>)</span></span> (swapped <span class="type">bool</span>)</span><br></pre></td></tr></table></figure>
+<p>compare-and-swap操作实现的功能是先比较<code>addr</code>
+指针指向的内存里的值是否为旧值<code>old</code>相等。</p>
+<ul>
+<li>如果相等，就把<code>addr</code>指针指向的内存里的值替换为新值<code>new</code>，并返回<code>true</code>，表示操作成功。</li>
+<li>如果不相等，直接返回<code>false</code>，表示操作失败。</li>
+</ul>
+<p>compare-and-swap操作是如下伪代码的原子实现：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> *addr == old &#123;</span><br><span class="line">	*addr = <span class="built_in">new</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>我们拿<code>CompareAndSwapInt32</code>举个例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// compare-and-swap.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync/atomic&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> dst <span class="type">int32</span> = <span class="number">100</span></span><br><span class="line">	oldValue := atomic.LoadInt32(&amp;dst)</span><br><span class="line">	<span class="keyword">var</span> newValue <span class="type">int32</span> = <span class="number">200</span></span><br><span class="line">	<span class="comment">// 先比较dst的值和oldValue的值，如果相等，就把dst的值替换为newValue</span></span><br><span class="line">	swapped := atomic.CompareAndSwapInt32(&amp;dst, oldValue, newValue)</span><br><span class="line">	<span class="comment">// 打印结果</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;old value: %d, swapped value: %d, swapped success: %v\n&quot;</span>, oldValue, dst, swapped)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面程序的执行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">old value: 100, swapped value: 200, swapped success: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="add操作">add操作</h3>
+<p>add操作支持<code>int32</code>, <code>int64</code>,
+<code>uint32</code>, <code>uint64</code>,
+<code>uintptr</code>这5种基本数据类型，对应有5个add操作函数。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">AddInt32</span><span class="params">(addr *<span class="type">int32</span>, delta <span class="type">int32</span>)</span></span> (<span class="built_in">new</span> <span class="type">int32</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">AddInt64</span><span class="params">(addr *<span class="type">int64</span>, delta <span class="type">int64</span>)</span></span> (<span class="built_in">new</span> <span class="type">int64</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">AddUint32</span><span class="params">(addr *<span class="type">uint32</span>, delta <span class="type">uint32</span>)</span></span> (<span class="built_in">new</span> <span class="type">uint32</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">AddUint64</span><span class="params">(addr *<span class="type">uint64</span>, delta <span class="type">uint64</span>)</span></span> (<span class="built_in">new</span> <span class="type">uint64</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">AddUintptr</span><span class="params">(addr *<span class="type">uintptr</span>, delta <span class="type">uintptr</span>)</span></span> (<span class="built_in">new</span> <span class="type">uintptr</span>)</span><br></pre></td></tr></table></figure>
+<p>add操作实现的功能是把<code>addr</code>
+指针指向的内存里的值和<code>delta</code>做加法，然后返回新值，是如下伪代码的原子实现：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*addr += delta</span><br><span class="line"><span class="keyword">return</span> *addr</span><br></pre></td></tr></table></figure>
+<p>我们拿<code>AddInt32</code>举个例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// add.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;sync/atomic&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多个goroutine并发读写sum，有并发冲突，最终计算得到的sum值是不准确的</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test1</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> sum <span class="type">int32</span> = <span class="number">0</span></span><br><span class="line">	N := <span class="number">100</span></span><br><span class="line">	wg.Add(N)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; N; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int32</span>)</span></span> &#123;</span><br><span class="line">			sum += i</span><br><span class="line">			wg.Done()</span><br><span class="line">		&#125;(<span class="type">int32</span>(i))</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line">	fmt.Println(<span class="string">&quot;func test1, sum=&quot;</span>, sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用原子操作计算sum，没有并发冲突，最终计算得到sum的值是准确的</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test2</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> sum <span class="type">int32</span> = <span class="number">0</span></span><br><span class="line">	N := <span class="number">100</span></span><br><span class="line">	wg.Add(N)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; N; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int32</span>)</span></span> &#123;</span><br><span class="line">			atomic.AddInt32(&amp;sum, i)</span><br><span class="line">			wg.Done()</span><br><span class="line">		&#125;(<span class="type">int32</span>(i))</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line">	fmt.Println(<span class="string">&quot;func test2, sum=&quot;</span>, sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	test1()</span><br><span class="line">	test2()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面程序的执行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func test1, <span class="built_in">sum</span>= 4857</span><br><span class="line">func test2, <span class="built_in">sum</span>= 4950</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：对于test1函数，你本地运行得到的结果可能和我的不一样，这个值并不是一个固定值。</p>
+<h3 id="load操作">load操作</h3>
+<p>load操作支持<code>int32</code>, <code>int64</code>,
+<code>uint32</code>, <code>uint64</code>, <code>uintptr</code>,
+<code>unsafe.Pointer</code>这6种基本数据类型，对应有6个load操作函数。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LoadInt32</span><span class="params">(addr *<span class="type">int32</span>)</span></span> (val <span class="type">int32</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LoadInt64</span><span class="params">(addr *<span class="type">int64</span>)</span></span> (val <span class="type">int64</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LoadPointer</span><span class="params">(addr *unsafe.Pointer)</span></span> (val unsafe.Pointer)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LoadUint32</span><span class="params">(addr *<span class="type">uint32</span>)</span></span> (val <span class="type">uint32</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LoadUint64</span><span class="params">(addr *<span class="type">uint64</span>)</span></span> (val <span class="type">uint64</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LoadUintptr</span><span class="params">(addr *<span class="type">uintptr</span>)</span></span> (val <span class="type">uintptr</span>)</span><br></pre></td></tr></table></figure>
+<p>load操作实现的功能是返回<code>addr</code>
+指针指向的内存里的值，是如下伪代码的原子实现：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> *addr</span><br></pre></td></tr></table></figure>
+<p>我们拿<code>LoadInt32</code>举个例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// load.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync/atomic&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> sum <span class="type">int32</span> = <span class="number">100</span></span><br><span class="line">	result := atomic.LoadInt32(&amp;sum)</span><br><span class="line">	fmt.Println(<span class="string">&quot;result=&quot;</span>, result)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面程序的执行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result= 100</span><br></pre></td></tr></table></figure>
+<h3 id="store操作">store操作</h3>
+<p>store操作支持<code>int32</code>, <code>int64</code>,
+<code>uint32</code>, <code>uint64</code>, <code>uintptr</code>,
+<code>unsafe.Pointer</code>这6种基本数据类型，对应有6个store操作函数。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">StoreInt32</span><span class="params">(addr *<span class="type">int32</span>, val <span class="type">int32</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">StoreInt64</span><span class="params">(addr *<span class="type">int64</span>, val <span class="type">int64</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">StorePointer</span><span class="params">(addr *unsafe.Pointer, val unsafe.Pointer)</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">StoreUint32</span><span class="params">(addr *<span class="type">uint32</span>, val <span class="type">uint32</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">StoreUint64</span><span class="params">(addr *<span class="type">uint64</span>, val <span class="type">uint64</span>)</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">StoreUintptr</span><span class="params">(addr *<span class="type">uintptr</span>, val <span class="type">uintptr</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>store操作实现的功能是把<code>addr</code>
+指针指向的内存里的值修改为<code>val</code>，是如下伪代码的原子实现：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*addr = val</span><br></pre></td></tr></table></figure>
+<p>我们拿<code>StoreInt32</code>举个例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync/atomic&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> sum <span class="type">int32</span> = <span class="number">100</span></span><br><span class="line">	<span class="keyword">var</span> newValue <span class="type">int32</span> = <span class="number">200</span></span><br><span class="line">	<span class="comment">// 将sum的值修改为newValue</span></span><br><span class="line">	atomic.StoreInt32(&amp;sum, newValue)</span><br><span class="line">	<span class="comment">// 读取修改后的sum值</span></span><br><span class="line">	result := atomic.LoadInt32(&amp;sum)</span><br><span class="line">	<span class="comment">// 打印结果</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;result=&quot;</span>, result)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面程序的执行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result= 200</span><br></pre></td></tr></table></figure>
+<h4 id="value类型-1">Value类型</h4>
+<p>Go标准库里的<code>sync/atomic</code>包提供了<code>Value</code>类型，可以用来并发读取和修改任何类型的值。</p>
+<p><code>Value</code>类型的定义如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A Value provides an atomic load and store of a consistently typed value.</span></span><br><span class="line"><span class="comment">// The zero value for a Value returns nil from Load.</span></span><br><span class="line"><span class="comment">// Once Store has been called, a Value must not be copied.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// A Value must not be copied after first use.</span></span><br><span class="line"><span class="keyword">type</span> Value <span class="keyword">struct</span> &#123;</span><br><span class="line">	v any</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Value</code>类型有4个方法：<code>CompareAndSwap</code>,
+<code>Load</code>, <code>Store</code>, <code>Swap</code>，定义如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Value)</span></span> CompareAndSwap(old, <span class="built_in">new</span> any) (swapped <span class="type">bool</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Value)</span></span> Load() (val any)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Value)</span></span> Store(val any)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Value)</span></span> Swap(<span class="built_in">new</span> any) (old any)</span><br></pre></td></tr></table></figure>
+<p>源码实现：https://cs.opensource.google/go/go/+/refs/tags/go1.18.1:src/sync/atomic/value.go</p>
+<p>下面是一个具体的示例：对<code>map[string][string]</code>类型做并发读写，为了避免加锁，使用<code>value</code>
+类型来读取和修改<code>map[string][string]</code>。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;sync/atomic&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">loadConfig</span><span class="params">()</span></span> <span class="keyword">map</span>[<span class="type">string</span>]<span class="type">string</span> &#123;</span><br><span class="line">	<span class="comment">// 从数据库或者文件系统中读取配置信息，然后以map的形式存放在内存里</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">string</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">requests</span><span class="params">()</span></span> <span class="keyword">chan</span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="comment">// 将从外界中接收到的请求放入到channel里</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// config变量用来存放该服务的配置信息</span></span><br><span class="line">	<span class="keyword">var</span> config atomic.Value</span><br><span class="line">	<span class="comment">// 初始化时从别的地方加载配置文件，并存到config变量里</span></span><br><span class="line">	config.Store(loadConfig())</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="comment">// 每10秒钟定时拉取最新的配置信息，并且更新到config变量里</span></span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			time.Sleep(<span class="number">10</span> * time.Second)</span><br><span class="line">			<span class="comment">// 对应于赋值操作 config = loadConfig()</span></span><br><span class="line">			config.Store(loadConfig())</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="comment">// 创建协程，每个工作协程都会根据它所读取到的最新的配置信息来处理请求</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">			<span class="keyword">for</span> r := <span class="keyword">range</span> requests() &#123;</span><br><span class="line">				<span class="comment">// 对应于取值操作 c := config</span></span><br><span class="line">				<span class="comment">// 由于Load()返回的是一个interface&#123;&#125;类型，所以我们要先强制转换一下</span></span><br><span class="line">				c := config.Load().(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">string</span>)</span><br><span class="line">				<span class="comment">// 这里是根据配置信息处理请求的逻辑...</span></span><br><span class="line">				_, _ = r, c</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结和注意事项">总结和注意事项</h2>
+<ul>
+<li><p>原子操作由底层CPU的原子操作指令支持。</p></li>
+<li><p>5种原子操作和<code>Value</code>类型的官方文档地址：https://pkg.go.dev/sync/atomic@go1.18.1</p></li>
+<li><p>CAS操作会有ABA问题</p></li>
+<li><p>对于386处理器架构，64-bit原子操作函数使用了奔腾MMX或更新处理器型号才支持的CPU指令。对于非Linux的ARM处理器架构，64-bit原子操作函数使用了ARMv6k
+core或更新处理器型号才支持的CPU指令。对于ARM, 386和32-bit
+MIPS处理器架构，原子操作的调用者要对进行原子访问的64bit字(
+word)按照64-bit进行内存对齐。变量或者分配的结构体、数组和切片的第1个字可以认为是64-bit对齐的。(
+这块涉及到内存对齐，后面抽个专题详解)</p></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>https://pkg.go.dev/sync/atomic@go1.18.1</li>
+<li>https://blog.betacat.io/post/golang-atomic-value-exploration/</li>
+<li>https://gfw.go101.org/article/concurrent-atomic-operation.html</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Golang/" rel="tag"><i class="fa fa-tag"></i> Golang</a>
+              <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> 并发编程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/undefined/13a29458/" rel="prev" title="23.并发编程之sync.Map">
+                  <i class="fa fa-angle-left"></i> 23.并发编程之sync.Map
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/undefined/89a63806/" rel="next" title="25.包package和模块Module">
+                  25.包package和模块Module <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">dl</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">48k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:56</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

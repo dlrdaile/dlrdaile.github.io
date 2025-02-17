@@ -111,12 +111,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"dlrdaile.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="变量定义  全局变量 函数外定义的变量叫全局变量，以下是全局变量的定义方法。  方法1  1var name type &#x3D; value  方法2：注意，全局变量如果采用这个方式定义，那不能在全局范围内赋值，只能在函数体内给这个全局变量赋值  123456var name type &#x2F;&#x2F; value will be defaulted to 0, false, &quot;&quot; based">
+    <meta name="description" content="变量定义 全局变量 函数外定义的变量叫全局变量，以下是全局变量的定义方法。  方法1 1var name type &#x3D; value 方法2：注意，全局变量如果采用这个方式定义，那不能在全局范围内赋值，只能在函数体内给这个全局变量赋值 123456var name type &#x2F;&#x2F; value will be defaulted to 0, false, &quot;&quot; based on t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="04.Go中的变量">
 <meta property="og:url" content="https://dlrdaile.github.io/undefined/717b940e/index.html">
 <meta property="og:site_name" content="A乐小屋">
-<meta property="og:description" content="变量定义  全局变量 函数外定义的变量叫全局变量，以下是全局变量的定义方法。  方法1  1var name type &#x3D; value  方法2：注意，全局变量如果采用这个方式定义，那不能在全局范围内赋值，只能在函数体内给这个全局变量赋值  123456var name type &#x2F;&#x2F; value will be defaulted to 0, false, &quot;&quot; based">
+<meta property="og:description" content="变量定义 全局变量 函数外定义的变量叫全局变量，以下是全局变量的定义方法。  方法1 1var name type &#x3D; value 方法2：注意，全局变量如果采用这个方式定义，那不能在全局范围内赋值，只能在函数体内给这个全局变量赋值 123456var name type &#x2F;&#x2F; value will be defaulted to 0, false, &quot;&quot; based on t">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-11T11:38:38.000Z">
 <meta property="article:modified_time" content="2024-08-12T00:13:25.265Z">
@@ -180,7 +180,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">19</span></a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -231,7 +231,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text"> 变量定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text"> 全局变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text"> 局部变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">1.3.</span> <span class="nav-text"> 多变量定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E9%9B%B6%E5%80%BC"><span class="nav-number">1.4.</span> <span class="nav-text"> 变量类型及其零值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.5.</span> <span class="nav-text"> 变量作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">1.6.</span> <span class="nav-text"> References</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">变量定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text">局部变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">1.3.</span> <span class="nav-text">多变量定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E9%9B%B6%E5%80%BC"><span class="nav-number">1.4.</span> <span class="nav-text">变量类型及其零值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.5.</span> <span class="nav-text">变量作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">1.6.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -246,18 +246,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -364,162 +364,95 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="变量定义"><a class="markdownIt-Anchor" href="#变量定义"></a> 变量定义</h1>
-<h2 id="全局变量"><a class="markdownIt-Anchor" href="#全局变量"></a> 全局变量</h2>
+    <div class="post-body" itemprop="articleBody"><h1 id="变量定义">变量定义</h1>
+<h2 id="全局变量">全局变量</h2>
 <p>函数外定义的变量叫全局变量，以下是全局变量的定义方法。</p>
 <ul>
-<li>方法1</li>
+<li><p>方法1 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name <span class="keyword">type</span> = value</span><br></pre></td></tr></table></figure></p></li>
+<li><p>方法2：注意，全局变量如果采用这个方式定义，那不能在全局范围内赋值，只能在函数体内给这个全局变量赋值
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name <span class="keyword">type</span> <span class="comment">// value will be defaulted to 0, false, &quot;&quot; based on the type</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 如果定义上面的全局变量，就不能紧接着在下一行通过name=value的方式对变量name做赋值，</span></span><br><span class="line"><span class="comment">比如name = 10，会编译报错：</span></span><br><span class="line"><span class="comment"> syntax error: non-declaration statement outside function body</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>方法3 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = value </span><br></pre></td></tr></table></figure></p></li>
+<li><p>方法4 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	v1 <span class="type">int</span> = <span class="number">10</span></span><br><span class="line">	v2 <span class="type">bool</span> = <span class="literal">true</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	v5 <span class="type">int</span>   <span class="comment">// the value will be defaulted to 0</span></span><br><span class="line">	v6 <span class="type">bool</span>  <span class="comment">// the value will be defaulted to false</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	v3 = <span class="number">20</span></span><br><span class="line">	v4 = <span class="literal">false</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p></li>
+<li><p><strong>全局变量允许声明后不使用</strong>，编译不会报错。</p></li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name <span class="keyword">type</span> = value</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法2：注意，全局变量如果采用这个方式定义，那不能在全局范围内赋值，只能在函数体内给这个全局变量赋值</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name <span class="keyword">type</span> <span class="comment">// value will be defaulted to 0, false, &quot;&quot; based on the type</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 如果定义上面的全局变量，就不能紧接着在下一行通过name=value的方式对变量name做赋值，</span></span><br><span class="line"><span class="comment">比如name = 10，会编译报错：</span></span><br><span class="line"><span class="comment"> syntax error: non-declaration statement outside function body</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法3</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = value </span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法4</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	v1 <span class="type">int</span> = <span class="number">10</span></span><br><span class="line">	v2 <span class="type">bool</span> = <span class="literal">true</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	v5 <span class="type">int</span>   <span class="comment">// the value will be defaulted to 0</span></span><br><span class="line">	v6 <span class="type">bool</span>  <span class="comment">// the value will be defaulted to false</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	v3 = <span class="number">20</span></span><br><span class="line">	v4 = <span class="literal">false</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>全局变量允许声明后不使用</strong>，编译不会报错。</li>
-</ul>
-<h2 id="局部变量"><a class="markdownIt-Anchor" href="#局部变量"></a> 局部变量</h2>
+<h2 id="局部变量">局部变量</h2>
 <p>函数内定义的变量叫局部变量。</p>
 <ul>
-<li>
-<p>和全局变量的定义相比，多了以下定义方法</p>
+<li>和全局变量的定义相比，多了以下定义方法
 <ul>
-<li>方法5</li>
+<li>方法5 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name := value</span><br></pre></td></tr></table></figure></li>
+<li>方法6 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name <span class="keyword">type</span></span><br><span class="line">name = value</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li><strong>局部变量定义后必须要被使用，否则编译报错</strong>，报错内容为<code>declared but not used</code>。</li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name := value</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法6<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name <span class="keyword">type</span></span><br><span class="line">name = value</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>局部变量定义后必须要被使用，否则编译报错</strong>，报错内容为<code>declared but not used</code>。</p>
-</li>
-</ul>
-<h2 id="多变量定义"><a class="markdownIt-Anchor" href="#多变量定义"></a> 多变量定义：</h2>
+<h2 id="多变量定义">多变量定义：</h2>
 <p>一次声明和定义多个变量</p>
 <ul>
-<li>
-<p>全局变量</p>
+<li><p>全局变量</p>
 <ul>
-<li>
-<p>方法1</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b, c <span class="type">int</span> = <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>方法2</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b, c <span class="type">bool</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>方法3</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b, c = <span class="number">1</span>, <span class="number">2</span>, <span class="string">&quot;str&quot;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li>
-<p>局部变量：和全局变量相比，多了以下定义方法</p>
+<li><p>方法1</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b, c <span class="type">int</span> = <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span></span><br></pre></td></tr></table></figure></li>
+<li><p>方法2</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b, c <span class="type">bool</span></span><br></pre></td></tr></table></figure></li>
+<li><p>方法3</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b, c = <span class="number">1</span>, <span class="number">2</span>, <span class="string">&quot;str&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>局部变量：和全局变量相比，多了以下定义方法</p>
 <ul>
-<li>
-<p>方法4</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b <span class="type">int</span></span><br><span class="line">a, b = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c, d <span class="type">int</span></span><br><span class="line">c = <span class="number">10</span></span><br><span class="line">d = <span class="number">20</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>方法5</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a, b := <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">a1, b1 := <span class="number">1</span>, <span class="string">&quot;str&quot;</span></span><br></pre></td></tr></table></figure>
-</li>
+<li><p>方法4</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b <span class="type">int</span></span><br><span class="line">a, b = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c, d <span class="type">int</span></span><br><span class="line">c = <span class="number">10</span></span><br><span class="line">d = <span class="number">20</span></span><br></pre></td></tr></table></figure></li>
+<li><p>方法5</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a, b := <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">a1, b1 := <span class="number">1</span>, <span class="string">&quot;str&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="变量类型及其零值"><a class="markdownIt-Anchor" href="#变量类型及其零值"></a> 变量类型及其零值</h2>
+<h2 id="变量类型及其零值">变量类型及其零值</h2>
 <ul>
-<li>
-<p>零值：英文叫<a target="_blank" rel="noopener" href="https://go.dev/ref/spec#The_zero_value">zero vaue</a>，没有显式初始化的变量，Go编译器会给一个默认值，也叫零值。</p>
-</li>
-<li>
-<p>数值：所有数值类型的零值都是0</p>
+<li><p>零值：英文叫<a target="_blank" rel="noopener" href="https://go.dev/ref/spec#The_zero_value">zero
+vaue</a>，没有显式初始化的变量，Go编译器会给一个默认值，也叫零值。</p></li>
+<li><p>数值：所有数值类型的零值都是0</p>
 <ul>
 <li>整数，零值是0。byte, rune, uintptr也是整数类型，所以零值也是0。</li>
 <li>浮点数，零值是0</li>
 <li>复数，零值是0+0i</li>
-</ul>
-</li>
-<li>
-<p>bool，零值是false</p>
-</li>
-<li>
-<p>字符串，零值是空串&quot;&quot;</p>
-</li>
-<li>
-<p>指针：var a *int，零值是nil</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num := <span class="number">100</span></span><br><span class="line"><span class="keyword">var</span> a * <span class="type">int</span> = &amp;num</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>切片：var a []int，零值是nil</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a []<span class="type">int</span> = []<span class="type">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">list := [<span class="number">6</span>]<span class="type">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>&#125; <span class="comment">//size为6的数组，前面2个元素是1和2，后面的是默认值0</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>map：var a map[string] int，零值是nil</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict := <span class="keyword">map</span>[<span class="type">string</span>] <span class="type">int</span>&#123;<span class="string">&quot;a&quot;</span>:<span class="number">1</span>, <span class="string">&quot;b&quot;</span>:<span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>函数：var a func(string) int，零值是nil</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function := <span class="function"><span class="keyword">func</span><span class="params">(str <span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> str</span><br><span class="line">&#125;</span><br><span class="line">result := function(<span class="string">&quot;hello fans&quot;</span>)</span><br><span class="line">fmt.Println(<span class="string">&quot;result=&quot;</span>, result)</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>channel：var a chan int，通道channel，零值是nil</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a <span class="keyword">chan</span> <span class="type">int</span> = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>)</span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">string</span>)</span><br><span class="line">c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">bool</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>接口：var a interface_type，接口interface，零值是nil</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Animal <span class="keyword">interface</span> &#123;</span><br><span class="line">  speak()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Cat <span class="keyword">struct</span> &#123;</span><br><span class="line">  name <span class="type">string</span></span><br><span class="line">  age <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(cat Cat)</span></span> speak() &#123;</span><br><span class="line">  fmt.Println(<span class="string">&quot;miao...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个接口变量a</span></span><br><span class="line"><span class="keyword">var</span> a Animal = Cat&#123;<span class="string">&quot;gaffe&quot;</span>, <span class="number">1</span>&#125;</span><br><span class="line">a.speak() <span class="comment">// miao...</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>结构体:  var instance StructName，结构体里每个field的零值是对应field的类型的零值</p>
+</ul></li>
+<li><p>bool，零值是false</p></li>
+<li><p>字符串，零值是空串""</p></li>
+<li><p>指针：var a *int，零值是nil</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num := <span class="number">100</span></span><br><span class="line"><span class="keyword">var</span> a * <span class="type">int</span> = &amp;num</span><br></pre></td></tr></table></figure></li>
+<li><p>切片：var a []int，零值是nil</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a []<span class="type">int</span> = []<span class="type">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">list := [<span class="number">6</span>]<span class="type">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>&#125; <span class="comment">//size为6的数组，前面2个元素是1和2，后面的是默认值0</span></span><br></pre></td></tr></table></figure></li>
+<li><p>map：var a map[string] int，零值是nil</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict := <span class="keyword">map</span>[<span class="type">string</span>] <span class="type">int</span>&#123;<span class="string">&quot;a&quot;</span>:<span class="number">1</span>, <span class="string">&quot;b&quot;</span>:<span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>函数：var a func(string) int，零值是nil</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function := <span class="function"><span class="keyword">func</span><span class="params">(str <span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> str</span><br><span class="line">&#125;</span><br><span class="line">result := function(<span class="string">&quot;hello fans&quot;</span>)</span><br><span class="line">fmt.Println(<span class="string">&quot;result=&quot;</span>, result)</span><br></pre></td></tr></table></figure></li>
+<li><p>channel：var a chan int，通道channel，零值是nil</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a <span class="keyword">chan</span> <span class="type">int</span> = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>)</span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">string</span>)</span><br><span class="line">c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">bool</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>接口：var a interface_type，接口interface，零值是nil</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Animal <span class="keyword">interface</span> &#123;</span><br><span class="line">  speak()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Cat <span class="keyword">struct</span> &#123;</span><br><span class="line">  name <span class="type">string</span></span><br><span class="line">  age <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(cat Cat)</span></span> speak() &#123;</span><br><span class="line">  fmt.Println(<span class="string">&quot;miao...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个接口变量a</span></span><br><span class="line"><span class="keyword">var</span> a Animal = Cat&#123;<span class="string">&quot;gaffe&quot;</span>, <span class="number">1</span>&#125;</span><br><span class="line">a.speak() <span class="comment">// miao...</span></span><br></pre></td></tr></table></figure></li>
+<li><p>结构体: var instance
+StructName，结构体里每个field的零值是对应field的类型的零值</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Circle <span class="keyword">struct</span> &#123;</span><br><span class="line">  radius <span class="type">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c1 Circle</span><br><span class="line">c1.radius = <span class="number">10.00</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="变量作用域"><a class="markdownIt-Anchor" href="#变量作用域"></a> 变量作用域</h2>
-<ul>
-<li>
-<p>局部变量</p>
+<h2 id="变量作用域">变量作用域</h2></li>
+<li><p>局部变量</p>
 <ul>
 <li>函数内声明的变量，作用域只在函数体内。函数的参数和返回值也是局部变量</li>
-</ul>
-</li>
-<li>
-<p>全局变量</p>
+</ul></li>
+<li><p>全局变量</p>
 <ul>
-<li>
-<p>函数外声明的变量，全局变量作用域可以在当前的整个包甚至外部包(被导出后)使用</p>
-</li>
-<li>
-<p>全局变量和局部变量名称可以相同，但是函数内的局部变量会被优先考虑</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g <span class="type">int</span> = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> g <span class="type">int</span> = <span class="number">20</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;g=&quot;</span>,g)	 <span class="comment">// g=20</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li>
-<p>函数形参</p>
+<li><p>函数外声明的变量，全局变量作用域可以在当前的整个包甚至外部包(被导出后)使用</p></li>
+<li><p>全局变量和局部变量名称可以相同，但是函数内的局部变量会被优先考虑</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g <span class="type">int</span> = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> g <span class="type">int</span> = <span class="number">20</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;g=&quot;</span>,g)	 <span class="comment">// g=20</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p>函数形参</p>
 <ul>
 <li>函数定义中的参数，作为函数的局部变量来使用</li>
+</ul></li>
+<li><p>花括号{}可以控制变量的作用域：和C++类似</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := <span class="number">10</span></span><br><span class="line">	&#123;</span><br><span class="line">		a := <span class="number">5</span></span><br><span class="line">		fmt.Println(<span class="string">&quot;a=&quot;</span>, a) <span class="comment">// a=5</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">&quot;a=&quot;</span>, a) <span class="comment">// a=10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-</li>
-<li>
-<p>花括号{}可以控制变量的作用域：和C++类似</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := <span class="number">10</span></span><br><span class="line">	&#123;</span><br><span class="line">		a := <span class="number">5</span></span><br><span class="line">		fmt.Println(<span class="string">&quot;a=&quot;</span>, a) <span class="comment">// a=5</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">&quot;a=&quot;</span>, a) <span class="comment">// a=10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="references"><a class="markdownIt-Anchor" href="#references"></a> References</h2>
+<h2 id="references">References</h2>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://go.dev/ref/spec#The_zero_value">https://go.dev/ref/spec#The_zero_value</a></li>
+<li>https://go.dev/ref/spec#The_zero_value</li>
 </ul>
 
     </div>
@@ -563,8 +496,8 @@
     <div class="footer-inner">
 
   <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -576,14 +509,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">16k</span>
+    <span title="站点总字数">48k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">58 分钟</span>
+    <span title="站点阅读时长">2:56</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

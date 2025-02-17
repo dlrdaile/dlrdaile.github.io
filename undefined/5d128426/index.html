@@ -180,7 +180,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">19</span></a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -231,7 +231,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#go%E6%A0%87%E5%87%86%E5%BA%93%E4%B9%8Bcmd%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text"> Go标准库之cmd命令使用详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#go%E5%91%BD%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text"> go命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84"><span class="nav-number">1.1.1.</span> <span class="nav-text"> 简单的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#go-bug%E7%BB%99go%E8%AF%AD%E8%A8%80%E5%AE%98%E6%96%B9%E6%8F%90bug"><span class="nav-number">1.1.1.1.</span> <span class="nav-text"> go bug(给go语言官方提bug)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-env%E5%A4%84%E7%90%86go%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.1.2.</span> <span class="nav-text"> go env(处理go环境变量)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-version%E6%9F%A5%E7%9C%8B%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84go%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.1.3.</span> <span class="nav-text"> go version(查看可执行文件的go版本)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5"><span class="nav-number">1.1.2.</span> <span class="nav-text"> 代码检查</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#go-fmt"><span class="nav-number">1.1.2.1.</span> <span class="nav-text"> go fmt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-vet"><span class="nav-number">1.1.2.2.</span> <span class="nav-text"> go vet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-fix"><span class="nav-number">1.1.2.3.</span> <span class="nav-text"> go fix</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C"><span class="nav-number">1.1.3.</span> <span class="nav-text"> 编译运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#go-build"><span class="nav-number">1.1.3.1.</span> <span class="nav-text"> go build</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-clean"><span class="nav-number">1.1.3.2.</span> <span class="nav-text"> go clean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-run"><span class="nav-number">1.1.3.3.</span> <span class="nav-text"> go run</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">1.1.4.</span> <span class="nav-text"> 单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#go-test"><span class="nav-number">1.1.4.1.</span> <span class="nav-text"> go test</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.5.</span> <span class="nav-text"> 模块管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#go-mod"><span class="nav-number">1.1.5.1.</span> <span class="nav-text"> go mod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-install"><span class="nav-number">1.1.5.2.</span> <span class="nav-text"> go install</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-get"><span class="nav-number">1.1.5.3.</span> <span class="nav-text"> go get</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-list"><span class="nav-number">1.1.5.4.</span> <span class="nav-text"> go list</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">1.2.</span> <span class="nav-text"> References</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#go%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">go命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84"><span class="nav-number">1.1.</span> <span class="nav-text">简单的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#go-bug%E7%BB%99go%E8%AF%AD%E8%A8%80%E5%AE%98%E6%96%B9%E6%8F%90bug"><span class="nav-number">1.1.1.</span> <span class="nav-text">go bug(给go语言官方提bug)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-env%E5%A4%84%E7%90%86go%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">go env(处理go环境变量)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-version%E6%9F%A5%E7%9C%8B%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84go%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.3.</span> <span class="nav-text">go
+version(查看可执行文件的go版本)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5"><span class="nav-number">1.2.</span> <span class="nav-text">代码检查</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#go-fmt"><span class="nav-number">1.2.1.</span> <span class="nav-text">go fmt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-vet"><span class="nav-number">1.2.2.</span> <span class="nav-text">go vet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-fix"><span class="nav-number">1.2.3.</span> <span class="nav-text">go fix</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C"><span class="nav-number">1.3.</span> <span class="nav-text">编译运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#go-build"><span class="nav-number">1.3.1.</span> <span class="nav-text">go build</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-clean"><span class="nav-number">1.3.2.</span> <span class="nav-text">go clean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-run"><span class="nav-number">1.3.3.</span> <span class="nav-text">go run</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#go-test"><span class="nav-number">1.4.1.</span> <span class="nav-text">go test</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%AE%A1%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">模块管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#go-mod"><span class="nav-number">1.5.1.</span> <span class="nav-text">go mod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-install"><span class="nav-number">1.5.2.</span> <span class="nav-text">go install</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-get"><span class="nav-number">1.5.3.</span> <span class="nav-text">go get</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#go-list"><span class="nav-number">1.5.4.</span> <span class="nav-text">go list</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">2.</span> <span class="nav-text">References</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -246,18 +247,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -364,92 +365,83 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>本文主要介绍Go标准库之cmd命令使用详解，包括go命令的基本使用、go命令的子命令、go命令的参数、go命令的返回值、go命令的错误处理、go命令的环境变量、go命令的模块管理、go命令的编译运行、go命令的单元测试、go命令的代码检查等内容。</p>
-<span id="more"></span>
-<h1 id="go标准库之cmd命令使用详解"><a class="markdownIt-Anchor" href="#go标准库之cmd命令使用详解"></a> Go标准库之cmd命令使用详解</h1>
-<h2 id="go命令"><a class="markdownIt-Anchor" href="#go命令"></a> go命令</h2>
+    <div class="post-body" itemprop="articleBody"><p>本文主要介绍Go标准库之cmd命令使用详解，包括go命令的基本使用、go命令的子命令、go命令的参数、go命令的返回值、go命令的错误处理、go命令的环境变量、go命令的模块管理、go命令的编译运行、go命令的单元测试、go命令的代码检查等内容。
+<span id="more"></span> # Go标准库之cmd命令使用详解</p>
+<h2 id="go命令">go命令</h2>
 <p>语法：go <command> [arguments]</p>
 <p>go命令支持的命令有如下这些：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">bug         start a bug report</span><br><span class="line">build       compile packages and dependencies</span><br><span class="line">clean       remove object files and cached files</span><br><span class="line">doc         show documentation <span class="keyword">for</span> <span class="keyword">package</span> or symbol</span><br><span class="line">env         <span class="built_in">print</span> Go environment information</span><br><span class="line">fix         update packages to use <span class="built_in">new</span> APIs</span><br><span class="line">fmt         gofmt (reformat) <span class="keyword">package</span> sources</span><br><span class="line">generate    generate Go files by processing source</span><br><span class="line">get         add dependencies to current module and install them</span><br><span class="line">install     compile and install packages and dependencies</span><br><span class="line">list        list packages or modules</span><br><span class="line">mod         module maintenance</span><br><span class="line">run         compile and run Go program</span><br><span class="line">test        test packages</span><br><span class="line">tool        run specified <span class="keyword">go</span> tool</span><br><span class="line">version     <span class="built_in">print</span> Go version</span><br><span class="line">vet         report likely mistakes in packages</span><br></pre></td></tr></table></figure>
 <p>如果不知道这些命令怎么用，可以使用go help <cmd>查看官方说明。</p>
-<h3 id="简单的"><a class="markdownIt-Anchor" href="#简单的"></a> 简单的</h3>
-<h4 id="go-bug给go语言官方提bug"><a class="markdownIt-Anchor" href="#go-bug给go语言官方提bug"></a> go bug(给go语言官方提bug)</h4>
+<h3 id="简单的">简单的</h3>
+<h4 id="go-bug给go语言官方提bug">go bug(给go语言官方提bug)</h4>
 <p>命令语法：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go bug</span><br></pre></td></tr></table></figure>
 <p>在终端(terminal)执行这个命令，会自动跳转到GitHub上的go语言官方repo，自动开1个issue</p>
-<h4 id="go-env处理go环境变量"><a class="markdownIt-Anchor" href="#go-env处理go环境变量"></a> go env(处理go环境变量)</h4>
+<h4 id="go-env处理go环境变量">go env(处理go环境变量)</h4>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go <span class="built_in">env</span> [-json] [-u] [-w] [var ...]</span><br></pre></td></tr></table></figure>
-<p>-json：表示把结果以json格式展示，只在查看环境变量的时候使用，不能和-u, -w放在一起使用</p>
-<p>-u: u表示unset，恢复环境变量的默认设置，后面必须有环境变量的名称，表示具体恢复哪个环境变量的值</p>
-<p>-w: w表示write，设置环境变量的值，后面必须跟name=value的形式，表示把环境变量name的值设置为value</p>
+<p>-json：表示把结果以json格式展示，只在查看环境变量的时候使用，不能和-u,
+-w放在一起使用</p>
+<p>-u:
+u表示unset，恢复环境变量的默认设置，后面必须有环境变量的名称，表示具体恢复哪个环境变量的值</p>
+<p>-w:
+w表示write，设置环境变量的值，后面必须跟name=value的形式，表示把环境变量name的值设置为value</p>
 <p>主要4个场景的用法</p>
 <ul>
-<li>
-<p>查看全部环境变量的值</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">go <span class="built_in">env</span></span><br><span class="line"><span class="comment"># 方法2：以json形式展示结果</span></span><br><span class="line">go <span class="built_in">env</span> -json</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>查看具体某个(1个或者多个)环境变量的值</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">go <span class="built_in">env</span> GO111MODULE GOPATH</span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">go <span class="built_in">env</span> | grep GO111MODULE</span><br><span class="line"><span class="comment"># 方法3</span></span><br><span class="line">go <span class="built_in">env</span> | findstr GO111MODULE</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>设置某个(1个或者多个)环境变量的值</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go <span class="built_in">env</span> -w GO111MODULE=on</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>恢复某个(1个或者多个)环境变量的值为默认值</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go <span class="built_in">env</span> -u GO111MODULE</span><br></pre></td></tr></table></figure>
-</li>
+<li><p>查看全部环境变量的值</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">go <span class="built_in">env</span></span><br><span class="line"><span class="comment"># 方法2：以json形式展示结果</span></span><br><span class="line">go <span class="built_in">env</span> -json</span><br></pre></td></tr></table></figure></li>
+<li><p>查看具体某个(1个或者多个)环境变量的值</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">go <span class="built_in">env</span> GO111MODULE GOPATH</span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">go <span class="built_in">env</span> | grep GO111MODULE</span><br><span class="line"><span class="comment"># 方法3</span></span><br><span class="line">go <span class="built_in">env</span> | findstr GO111MODULE</span><br></pre></td></tr></table></figure></li>
+<li><p>设置某个(1个或者多个)环境变量的值</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go <span class="built_in">env</span> -w GO111MODULE=on</span><br></pre></td></tr></table></figure></li>
+<li><p>恢复某个(1个或者多个)环境变量的值为默认值</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go <span class="built_in">env</span> -u GO111MODULE</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="go-version查看可执行文件的go版本"><a class="markdownIt-Anchor" href="#go-version查看可执行文件的go版本"></a> go version(查看可执行文件的go版本)</h4>
+<h4 id="go-version查看可执行文件的go版本">go
+version(查看可执行文件的go版本)</h4>
 <p>命令语法：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> version [-m] [-v] [file ...]</span><br></pre></td></tr></table></figure>
-<p>go version既可以用来查看当前系统安装的go的版本号，也可以查看可执行文件是使用哪个版本的go编译出来的，命令里最后一个参数既可以是可执行文件，也可以是目录。</p>
-<p>-m: m代指module，后面必须带上可执行文件或者目录作为参数，用于展示可执行文件依赖的模块的版本信息</p>
-<p>-v: v代指verbose，表示打印更为详细的信息，最后一个参数是目录的时候才真正起作用</p>
+<p>go
+version既可以用来查看当前系统安装的go的版本号，也可以查看可执行文件是使用哪个版本的go编译出来的，命令里最后一个参数既可以是可执行文件，也可以是目录。</p>
+<p>-m:
+m代指module，后面必须带上可执行文件或者目录作为参数，用于展示可执行文件依赖的模块的版本信息</p>
+<p>-v:
+v代指verbose，表示打印更为详细的信息，最后一个参数是目录的时候才真正起作用</p>
 <ul>
-<li>
-<p>查看当前系统安装的go的版本号</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>查看可执行文件是使用哪个版本的go编译生成的</p>
+<li><p>查看当前系统安装的go的版本号</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version</span><br></pre></td></tr></table></figure></li>
+<li><p>查看可执行文件是使用哪个版本的go编译生成的</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version binfile</span><br></pre></td></tr></table></figure>
-<p>比如我们使用go build main.go 编译生成了一个可执行文件main，那就可以使用如下命令来查看main这个可执行文件是使用哪个版本的go编译出来的</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version main</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>查看目录下的所有可执行文件是使用哪个版本的go编译生成的</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version <span class="built_in">dir</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>查看可执行文件使用的go版本以及可执行文件依赖的模块信息</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go version -m binfile</span><br><span class="line">go version -m <span class="built_in">dir</span></span><br></pre></td></tr></table></figure>
-</li>
+<p>比如我们使用go build main.go
+编译生成了一个可执行文件main，那就可以使用如下命令来查看main这个可执行文件是使用哪个版本的go编译出来的</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version main</span><br></pre></td></tr></table></figure></li>
+<li><p>查看目录下的所有可执行文件是使用哪个版本的go编译生成的</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version <span class="built_in">dir</span></span><br></pre></td></tr></table></figure></li>
+<li><p>查看可执行文件使用的go版本以及可执行文件依赖的模块信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go version -m binfile</span><br><span class="line">go version -m <span class="built_in">dir</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="代码检查"><a class="markdownIt-Anchor" href="#代码检查"></a> 代码检查</h3>
-<h4 id="go-fmt"><a class="markdownIt-Anchor" href="#go-fmt"></a> go fmt</h4>
-<h4 id="go-vet"><a class="markdownIt-Anchor" href="#go-vet"></a> go vet</h4>
+<h3 id="代码检查">代码检查</h3>
+<h4 id="go-fmt">go fmt</h4>
+<h4 id="go-vet">go vet</h4>
 <p>命令语法：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go vet [-n] [-x] [-vettool prog] [build flags] [vet flags] [packages]</span><br></pre></td></tr></table></figure>
 <p>vet的中文含义是”审查“，因此这个命令就是对Go代码做检查，报告潜在可能的错误</p>
-<h4 id="go-fix"><a class="markdownIt-Anchor" href="#go-fix"></a> go fix</h4>
-<h3 id="编译运行"><a class="markdownIt-Anchor" href="#编译运行"></a> 编译运行</h3>
-<h4 id="go-build"><a class="markdownIt-Anchor" href="#go-build"></a> go build</h4>
-<h4 id="go-clean"><a class="markdownIt-Anchor" href="#go-clean"></a> go clean</h4>
-<h4 id="go-run"><a class="markdownIt-Anchor" href="#go-run"></a> go run</h4>
-<h3 id="单元测试"><a class="markdownIt-Anchor" href="#单元测试"></a> 单元测试</h3>
-<h4 id="go-test"><a class="markdownIt-Anchor" href="#go-test"></a> go test</h4>
-<h3 id="模块管理"><a class="markdownIt-Anchor" href="#模块管理"></a> 模块管理</h3>
-<h4 id="go-mod"><a class="markdownIt-Anchor" href="#go-mod"></a> go mod</h4>
-<h4 id="go-install"><a class="markdownIt-Anchor" href="#go-install"></a> go install</h4>
-<h4 id="go-get"><a class="markdownIt-Anchor" href="#go-get"></a> go get</h4>
+<h4 id="go-fix">go fix</h4>
+<h3 id="编译运行">编译运行</h3>
+<h4 id="go-build">go build</h4>
+<h4 id="go-clean">go clean</h4>
+<h4 id="go-run">go run</h4>
+<h3 id="单元测试">单元测试</h3>
+<h4 id="go-test">go test</h4>
+<h3 id="模块管理">模块管理</h3>
+<h4 id="go-mod">go mod</h4>
+<h4 id="go-install">go install</h4>
+<h4 id="go-get">go get</h4>
 <p>更新go.sum?写个example</p>
-<h4 id="go-list"><a class="markdownIt-Anchor" href="#go-list"></a> go list</h4>
-<h2 id="references"><a class="markdownIt-Anchor" href="#references"></a> References</h2>
+<h4 id="go-list">go list</h4>
+<h2 id="references">References</h2>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://pkg.go.dev/cmd/go">https://pkg.go.dev/cmd/go</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/hyper0x/go_command_tutorial">https://github.com/hyper0x/go_command_tutorial</a></li>
+<li>https://pkg.go.dev/cmd/go</li>
+<li>https://github.com/hyper0x/go_command_tutorial</li>
 </ul>
 
     </div>
@@ -472,6 +464,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/undefined/f2a18148/" rel="next" title="18.goroutine和channel">
+                  18.goroutine和channel <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -490,8 +485,8 @@
     <div class="footer-inner">
 
   <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -503,14 +498,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">16k</span>
+    <span title="站点总字数">48k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">58 分钟</span>
+    <span title="站点阅读时长">2:56</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

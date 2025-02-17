@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/Dinosaur.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/Dinosaur.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dlrdaile.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="项目背景 传统的后端项目开发会与开发平台以及开发语言强绑定，这使得项目合作过程要求新加入的合作者必须掌握相同的技术栈，具有一定的团队磨合成本和学习成本。 在微服务架构盛行的当下，复杂的后端服务可以使用领域驱动设计的方式可以拆解为若干相互独立的微服务模块，如电商系统中的订单服务、支付服务、库存服务等。这种方式可以使得团队成员可以专注于自己擅长的领域，提高开发效率。 但是，微服务架构也带来了新的问题，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于dapr和yarp网关实现分布式多语言后端系统">
+<meta property="og:url" content="https://dlrdaile.github.io/undefined/df159cc/index.html">
+<meta property="og:site_name" content="A乐小屋">
+<meta property="og:description" content="项目背景 传统的后端项目开发会与开发平台以及开发语言强绑定，这使得项目合作过程要求新加入的合作者必须掌握相同的技术栈，具有一定的团队磨合成本和学习成本。 在微服务架构盛行的当下，复杂的后端服务可以使用领域驱动设计的方式可以拆解为若干相互独立的微服务模块，如电商系统中的订单服务、支付服务、库存服务等。这种方式可以使得团队成员可以专注于自己擅长的领域，提高开发效率。 但是，微服务架构也带来了新的问题，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-19T14:27:58.000Z">
+<meta property="article:modified_time" content="2025-02-17T02:35:26.267Z">
+<meta property="article:author" content="dl">
+<meta property="article:tag" content="Dapr">
+<meta property="article:tag" content="Yarp">
+<meta property="article:tag" content="分布式">
+<meta property="article:tag" content="多语言系统">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://dlrdaile.github.io/undefined/df159cc/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://dlrdaile.github.io/undefined/df159cc/","path":"undefined/df159cc/","title":"基于dapr和yarp网关实现分布式多语言后端系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于dapr和yarp网关实现分布式多语言后端系统 | A乐小屋</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">A乐小屋</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">项目背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dapr"><span class="nav-number">1.1.</span> <span class="nav-text">Dapr</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dapr%E6%8F%90%E4%BE%9B%E7%9A%84%E5%BE%AE%E6%9C%8D%E6%9E%84%E5%BB%BA%E5%9D%97"><span class="nav-number">1.1.1.</span> <span class="nav-text">Dapr提供的微服构建块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dapr%E7%9A%84%E9%83%A8%E7%BD%B2%E5%92%8C%E6%89%98%E7%AE%A1%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">Dapr的部署和托管方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dapr%E6%94%AF%E6%8C%81%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="nav-number">1.1.3.</span> <span class="nav-text">Dapr支持的语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yarp"><span class="nav-number">1.2.</span> <span class="nav-text">yarp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81yarp"><span class="nav-number">1.2.1.</span> <span class="nav-text">为什么需要yarp？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yarp%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">1.2.2.</span> <span class="nav-text">yarp的特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.3.</span> <span class="nav-text">项目介绍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98"><span class="nav-number">2.</span> <span class="nav-text">项目实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E5%85%B3%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.1.</span> <span class="nav-text">创建网关服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dl"
+      src="/img/Dinosaur.png">
+  <p class="site-author-name" itemprop="name">dl</p>
+  <div class="site-description" itemprop="description">观察着、体验着、前进着</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dlrdaile" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dlrdaile" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/dle467866@gmail.com" title="E-Mail → dle467866@gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dlrdaile.github.io/undefined/df159cc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/Dinosaur.png">
+      <meta itemprop="name" content="dl">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="A乐小屋">
+      <meta itemprop="description" content="观察着、体验着、前进着">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基于dapr和yarp网关实现分布式多语言后端系统 | A乐小屋">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于dapr和yarp网关实现分布式多语言后端系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-19 22:27:58" itemprop="dateCreated datePublished" datetime="2024-08-19T22:27:58+08:00">2024-08-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-17 10:35:26" itemprop="dateModified" datetime="2025-02-17T10:35:26+08:00">2025-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Dapr/" itemprop="url" rel="index"><span itemprop="name">Dapr</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Dapr/Yarp/" itemprop="url" rel="index"><span itemprop="name">Yarp</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Dapr/Yarp/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">分布式系统</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>12 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="项目背景">项目背景</h1>
+<p>传统的后端项目开发会与开发平台以及开发语言强绑定，这使得项目合作过程要求新加入的合作者必须掌握相同的技术栈，具有一定的团队磨合成本和学习成本。</p>
+<p>在微服务架构盛行的当下，复杂的后端服务可以使用领域驱动设计的方式可以拆解为若干相互独立的微服务模块，如电商系统中的订单服务、支付服务、库存服务等。这种方式可以使得团队成员可以专注于自己擅长的领域，提高开发效率。</p>
+<p>但是，微服务架构也带来了新的问题，如服务间的通信、服务发现、负载均衡、服务治理等。这些问题在传统的单体应用中都有现成的解决方案，但是在微服务架构中，这些问题变得更加复杂。</p>
+<p>进一步，当面临权限校验，日志记录，监控等通用功能时，传统的解决方案往往需要在每个服务中重复实现，这不仅增加了开发成本，也增加了维护成本。</p>
+<p>为了解决这些问题，使得不同服务的开发者可以使用自己熟悉的技术栈专注于自己的业务逻辑，同时又能够享受到微服务架构的优势，需要一个通用的解决方案。而这个解决方案就是dapr。</p>
+<span id="more"></span>
+<h2 id="dapr">Dapr</h2>
+<p><a
+target="_blank" rel="noopener" href="https://docs.dapr.io/"><strong>Dapr</strong></a>是一个开源的分布式应用运行时，它提供了一系列的微服务开发的基础设施，如服务发现、负载均衡、服务间通信等。
+使用Dapr，可以逐步将现有的应用程序迁移到微服务架构，从而采用云原生模式，如横向扩展、复原能力和独立部署。
+Dapr 是平台无关的，这意味着您可以运行您的应用程序：</p>
+<ul>
+<li>本地</li>
+<li>在任何 Kubernetes 集群上</li>
+<li>在虚拟机或物理机上</li>
+<li>在其他 Dapr 集成的托管环境中。</li>
+</ul>
+<p>这使您能够构建可在云和边缘上运行的微服务应用程序。</p>
+<p><img
+src="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeoverview.png"
+alt="img" /> Dapr 以 sidecar 架构的方式公开其 HTTP 和 gRPC
+API，无论是作为容器还是作为进程，不需要应用代码包含任何 Dapr
+运行时代码。 这使得 Dapr
+与其他运行时的集成变得容易，同时也提供了应用逻辑的分离，改善可支持性。
+&gt; ### 什么是sidecar模式？ &gt; sidecar &gt;
+模式是一种软件设计模式，它将应用程序的核心功能与附加功能分离开来。在这种模式下，附加功能作为一个独立的进程运行，与主进程共享同一个主机。这种模式的优点是可以在不修改主进程的情况下，为应用程序添加新的功能，同时也可以提高应用程序的可维护性和可扩展性。
+&gt; &gt;
+通俗理解就是，sidecar模式就是在应用程序的旁边（sidecar）运行一个辅助进程，这个辅助进程负责提供一些额外的功能，如日志记录、监控、负载均衡等。这样，应用程序就可以专注于自己的业务逻辑，而不用关心这些额外的功能。可以类比为一辆自行车，sidecar就是那个附加的车厢，负责提供额外的功能。</p>
+<figure>
+<img
+src="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeoverview-sidecar-model.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h3 id="dapr提供的微服构建块">Dapr提供的微服构建块</h3>
+<p><img
+src="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokebuilding_blocks.png"
+alt="img" />
+如图所示，Dapr提供了一系列的微服务构建块，各模块的功能如下：</p>
+<table>
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 94%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>构建块</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>服务之间的调用</td>
+<td>服务间调用允许进行远程方法调用(包括重试)，无论远程服务处于任何位置，只需该服务托管于受支持的环境即可。</td>
+</tr>
+<tr class="even">
+<td>状态管理</td>
+<td>通过采用存储和查询键/值对机制的状态管理，可以轻松的使长时运行、高可用的有状态服务和无状态服务共同运行在您的应用程序中。
+状态存储是可插拔的，示例包括AWS DynamoDB、Azure CosmosDB、Azure SQL
+Server、GCP Firebase、PostgreSQL或Redis，等等。</td>
+</tr>
+<tr class="odd">
+<td>发布和订阅</td>
+<td>在服务之间发布事件和订阅主题，使事件驱动的架构能够简化水平可伸缩性，并使其能够灵活应对故障。
+Dapr 提供至少一次的消息传递保证，消息TTL，消费者组等高级功能。</td>
+</tr>
+<tr class="even">
+<td>资源绑定</td>
+<td>通过接收和发送事件到任何外部来源，如数据库、队列、文件系统等，带触发器的资源绑定进一步加强了事件驱动架构的规模和弹性。</td>
+</tr>
+<tr class="odd">
+<td>Actors</td>
+<td>一种用于有状态和无状态对象的模式，它通过对方法和状态的封装使并发变得简单。
+Dapr 在 Actor 模式中提供了很多功能，包括并发，状态管理，用于 actor
+激活/停用的生命周期管理，以及唤醒 actor 的计时器和提醒器。</td>
+</tr>
+<tr class="even">
+<td>secrets</td>
+<td>Dapr 提供了密钥管理，支持与公有云和本地的 Secret
+存储集成，以供应用检索使用。</td>
+</tr>
+<tr class="odd">
+<td>配置</td>
+<td>配置 API 使您能够从配置存储中检索和订阅应用程序配置项。</td>
+</tr>
+<tr class="even">
+<td>分布式锁</td>
+<td>分布式锁 API
+使应用程序能够获取任何资源的锁，该资源会授予其独占访问权限，直到应用程序释放锁或发生租约超时。</td>
+</tr>
+<tr class="odd">
+<td>工作流程</td>
+<td>工作流 API 可以与其他 Dapr 构建块结合使用，做到使用 Dapr
+工作流或工作流组件定义跨多个微服务的长时间运行的持久进程或数据流。</td>
+</tr>
+<tr class="even">
+<td>密码学</td>
+<td>加密 API 在密钥保管库等安全基础结构之上提供抽象层。
+它包含允许您执行加密操作（例如加密和解密消息）的
+API，而无需向应用程序公开密钥。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dapr的部署和托管方式">Dapr的部署和托管方式</h3>
+<p>Dapr 可以托管在多个环境中，包括：</p>
+<ul>
+<li>自托管在 Windows/Linux/macOS 计算机上，用于本地开发</li>
+<li>在 Kubernetes 或生产中的物理或虚拟机集群上</li>
+</ul>
+<p>在自托管模式，Dapr作为一个独立的sidecar进程运行，你的服务代码可以通过HTTP或gRPC调用。
+每个运行的服务都有一个 Dapr 运行时进程 (或 sidecar)
+，配置为使用状态存储， pub/sub，绑定组件和其他构建块。</p>
+<figure>
+<img
+src="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeoverview-standalone.png"
+alt="Architecture diagram of Dapr in self-hosted mode" />
+<figcaption aria-hidden="true">Architecture diagram of Dapr in
+self-hosted mode</figcaption>
+</figure>
+<p>在 Kubernetes 中，Dapr 以 sidecar 模式运行，这意味着 Dapr
+运行时作为一个 sidecar 容器与应用程序容器一起运行。 这种模式使 Dapr
+与应用程序的集成变得非常简单，同时也提供了应用程序逻辑的分离，从而提高了可支持性。</p>
+<figure>
+<img
+src="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokeoverview-kubernetes.png"
+alt="Architecture diagram of Dapr in Kubernetes mode" />
+<figcaption aria-hidden="true">Architecture diagram of Dapr in
+Kubernetes mode</figcaption>
+</figure>
+<h3 id="dapr支持的语言">Dapr支持的语言</h3>
+<p>Dapr可以使用HTTP或gRPC与任何语言的应用程序集成。 Dapr
+运行时提供了用于与 Dapr API 通信的客户端 SDK，这些 SDK
+可以在任何语言中使用。 Dapr 还提供了用于与 Dapr API 通信的 CLI
+工具，这些工具可以在任何语言中使用。 当前，Dapr提供了以下语言的SDK：</p>
+<ul>
+<li>Go</li>
+<li>Java</li>
+<li>JavaScript</li>
+<li>.NET</li>
+<li>PHP</li>
+<li>Python</li>
+</ul>
+<p>这些 SDK 通过特定语言 API 来暴露 Dapr 构建块的功能，而不是调用
+http/gRPC API。 这使您能够用您选择的语言编写无状态和有状态函数以及 Actor
+的组合。 由于这些 SDK 共享 Dapr 运行时，因此可以获得跨语言的 actor
+和功能支持。</p>
+<h2 id="yarp">yarp</h2>
+<figure>
+<img
+src="https://dl-poke.oss-cn-beijing.aliyuncs.com/poke1*-vJjmtQPPNNk8F9Ln2sETw.png"
+alt="API Gateways with YARP Reverse Proxy in .NET 8 Microservices | by Mehmet Ozkaya | Medium" />
+<figcaption aria-hidden="true">API Gateways with YARP Reverse Proxy in
+.NET 8 Microservices | by Mehmet Ozkaya | Medium</figcaption>
+</figure>
+<h3 id="为什么需要yarp">为什么需要yarp？</h3>
+<p><a
+target="_blank" rel="noopener" href="https://microsoft.github.io/reverse-proxy/index.html"><strong>yarp</strong></a>是一个开源的反向代理工具，它可以用来实现服务的路由、负载均衡等功能。
+在微服务架构中，服务之间的通信是非常频繁的，而且服务的数量也可能非常多。为了简化服务之间的通信，通常会使用一个网关来统一管理服务的路由、负载均衡等功能。
+传统的网关有很多种，如Nginx、Envoy等，但是这些网关都是通用的网关，它们并不了解微服务的概念，也不了解微服务之间的依赖关系。这就导致了在使用这些网关时，需要手动配置服务的路由、负载均衡等功能，这样就增加了配置的复杂性，也增加了维护的成本。
+而在使用dapr时，dapr已经提供了服务发现、负载均衡等功能，那么为什么还需要yarp呢？
+这是因为dapr是一个应用级的解决方案，它只负责应用程序之间的通信，而不负责服务之间的通信。而yarp是一个网络级的解决方案，它负责服务之间的通信，所以yarp和dapr是可以很好的结合在一起的。
+在本项目中，需要一个统一的入口对外部访问的接口资源进行管理，如哪些接口需要鉴权、哪些接口需要限流等。这时，就可以使用yarp来实现这些功能。</p>
+<h3 id="yarp的特点">yarp的特点</h3>
+<p>yarp是一个开源的反向代理工具，是在 .NET Core 基础结构之上实现的，可在
+Windows、Linux 或 MacOS 上使用，支持 HTTP 和 gRPC 协议。</p>
+<h2 id="项目介绍">项目介绍</h2>
+<p>在本项目中，将使用dapr和yarp来实现一个分布式多语言后端系统。该系统需要一个统一的入口对外部访问的接口资源进行管理，包括有哪些接口可以访问、哪些接口需要鉴权、哪些接口需要限流等。为了可以集中处理这些功能，需要实现一个路由注册服务，用来注册所有的服务和接口信息，并将路由服务与鉴权、限流等功能集成在一起。
+实现以下几方面的统一：</p>
+<ol type="1">
+<li>统一的入口：所有的请求都通过统一的入口进行访问，这样可以方便的管理所有的请求。</li>
+<li>统一的鉴权：所有的请求都需要经过鉴权，只有通过鉴权的请求才能访问后端服务。</li>
+<li>统一的限流：所有的请求都需要经过限流，只有通过限流的请求才能访问后端服务。</li>
+<li>统一的监控：所有的请求都需要经过监控，可以方便的查看请求的状态和性能。</li>
+</ol>
+<p>初次之外，作为微服务分布式系统的基础设施支持，还需要实现健康检查、日志中心，配置服务，自动路由注册，自动权限注册等功能。</p>
+<p>接下来，我将分别介绍如何使用dapr和yarp来实现这些功能。</p>
+<h1 id="项目实战">项目实战</h1>
+<h2 id="创建网关服务">创建网关服务</h2>
+<p>首先，我们需要创建一个网关服务，用来统一管理所有的请求。</p>
+<ol type="1">
+<li>创建一个新的ASP.NET Core
+Web应用程序，命名为<code>GatewayService</code>。</li>
+<li>在<code>GatewayService</code>项目中，添加对<code>Microsoft.ReverseProxy</code>的引用。</li>
+<li>在<code>appsettings.json</code>文件中，添加yarp的配置信息。</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// appsettings.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;ReverseProxy&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;Routes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;CustomerRoute&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;ClusterId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;customers&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;AuthorizationPolicy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;AdminPolicy&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="comment">// 匹配规则</span></span><br><span class="line">        <span class="attr">&quot;Match&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;Path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/api/&#123;version&#125;/customer/&#123;platform&#125;/&#123;**path&#125;&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="comment">// 转换规则</span></span><br><span class="line">        <span class="attr">&quot;Transforms&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">          <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="comment">// 转换后的路径模板</span></span><br><span class="line">            <span class="attr">&quot;PathPattern&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/&#123;version&#125;/&#123;platform&#125;/&#123;**path&#125;&quot;</span></span><br><span class="line">          <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="comment">// 添加请求头</span></span><br><span class="line">            <span class="attr">&quot;RequestHeader&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dapr-app-id&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="comment">// 请求头的值，此处为daprd的appId</span></span><br><span class="line">            <span class="attr">&quot;Append&quot;</span><span class="punctuation">:</span> <span class="string">&quot;customer-webapi&quot;</span></span><br><span class="line">          <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;Clusters&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;customers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;Destinations&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;customers/destination1&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="comment">// 后端服务的地址，此处为daprd服务的地址</span></span><br><span class="line">            <span class="attr">&quot;Address&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://localhost:3500/&quot;</span></span><br><span class="line">          <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>在上面的配置中，我们定义了一个路由<code>CustomerRoute</code>，它的匹配规则是<code>/api/&#123;version&#125;/customer/&#123;platform&#125;/&#123;**path&#125;</code>，
+当请求匹配到这个规则时，会将请求转发到<code>customers</code>集群中的<code>customers/destination1</code>
+目标地址。同时，我们还定义了一个转换规则，将请求的路径中的<code>/</code>替换为<code>&#123;version&#125;/&#123;platform&#125;/&#123;**path&#125;</code>
+，并且在请求头中添加<code>dapr-app-id</code>的请求头，值为<code>customer-webapi</code>。
+<code>customers/destination1</code>
+是一个目标地址，它的地址是<code>http://localhost:3500/</code>，这个地址是后端服务的地址。3500端口是dart服务的默认端口，定义该端口可在后续通过dapr直接进行服务发现。
+在yarp中路由通配符的定义如下：</p>
+<ul>
+<li><code>&#123;version&#125;</code>：匹配一个路径段，如<code>v1</code>。</li>
+<li><code>&#123;platform&#125;</code>：匹配一个路径段，如<code>web</code>。</li>
+<li><code>&#123;**path&#125;</code>：匹配一个或多个路径段，如<code>/api/v1/customer/web/get</code>。</li>
+<li>api：匹配一个路径段，如<code>api</code>，这里是固定的。</li>
+</ul>
+<blockquote>
+<p>单个*匹配一个路径段，如模板<code>/api/&#123;version&#125;/customer/&#123;platform&#125;/*</code>可以匹配<code>/api/v1/customer/web/get</code>
+，但是不能匹配<code>/api/v1/customer/web/get/1</code>。</p>
+</blockquote>
+<p>此处提取的路由参数可以在代码中提取出来，配置的变量名字即后续获得动态路由参数的键名。</p>
+<ol start="4" type="1">
+<li>在<code>Program.cs</code>文件中，需要注册yarp服务配置，配置可以从配置文件中读取，也可以通过代码配置，这里我们使用配置文件的方式。</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Program.cs</span></span><br><span class="line"><span class="keyword">var</span> builder = WebApplication.CreateBuilder(args);</span><br><span class="line"><span class="keyword">var</span> services = builder.Services;</span><br><span class="line">services.AddReverseProxy()</span><br><span class="line">    .LoadFromConfig(builder.Configuration.GetSection(<span class="string">&quot;ReverseProxy&quot;</span>));</span><br><span class="line"><span class="keyword">var</span> app = builder.Build();</span><br><span class="line">app.MapReverseProxy(a =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    a.UseSessionAffinity();</span><br><span class="line">    a.UseLoadBalancing();</span><br><span class="line">    a.UsePassiveHealthChecks();</span><br><span class="line">&#125;);</span><br><span class="line">app.MapControllers();</span><br><span class="line">app.Run();</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料">参考资料</h1>
+<p>官方文档：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.dapr.io/">Dapr官方文档</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://microsoft.github.io/reverse-proxy/index.html">yarp官方文档</a>
+项目参考：</li>
+<li><a
+target="_blank" rel="noopener" href="https://github.com/william-liebenberg/practical-dapr">Practical
+Microservice Development with Dapr</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://github.com/yangzhongke/NETBookMaterials/tree/main/%E6%9C%80%E5%90%8E%E5%A4%A7%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81/YouZack-VNext">YouZack
+Project</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://gitee.com/zhangyin-gitee/rec-all-dapr-2">张引老师的Dapr微服务实战课程</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Dapr/" rel="tag"><i class="fa fa-tag"></i> Dapr</a>
+              <a href="/tags/Yarp/" rel="tag"><i class="fa fa-tag"></i> Yarp</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+              <a href="/tags/%E5%A4%9A%E8%AF%AD%E8%A8%80%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 多语言系统</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/undefined/2ac2b308/" rel="prev" title="go-mysql">
+                  <i class="fa fa-angle-left"></i> go-mysql
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/undefined/e5334e9d/" rel="next" title="Clion调试Ros2">
+                  Clion调试Ros2 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">dl</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">48k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:56</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

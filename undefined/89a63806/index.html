@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/Dinosaur.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/Dinosaur.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dlrdaile.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本文主要介绍Go的包package和模块Module的使用方法，包括package的定义、import语法、Go如何寻找import的package、init函数、注意事项等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="25.包package和模块Module">
+<meta property="og:url" content="https://dlrdaile.github.io/undefined/89a63806/index.html">
+<meta property="og:site_name" content="A乐小屋">
+<meta property="og:description" content="本文主要介绍Go的包package和模块Module的使用方法，包括package的定义、import语法、Go如何寻找import的package、init函数、注意事项等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-12T09:51:30.000Z">
+<meta property="article:modified_time" content="2025-02-17T02:26:52.555Z">
+<meta property="article:author" content="dl">
+<meta property="article:tag" content="Golang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://dlrdaile.github.io/undefined/89a63806/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://dlrdaile.github.io/undefined/89a63806/","path":"undefined/89a63806/","title":"25.包package和模块Module"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>25.包package和模块Module | A乐小屋</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">A乐小屋</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#package%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">package定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import%E8%AF%AD%E6%B3%95%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">import语法示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%AE%E9%80%9A"><span class="nav-number">2.1.</span> <span class="nav-text">普通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%AB%E5%90%8D"><span class="nav-number">2.2.</span> <span class="nav-text">别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E6%93%8D%E4%BD%9C"><span class="nav-number">2.3.</span> <span class="nav-text">点操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E5%88%92%E7%BA%BF"><span class="nav-number">2.4.</span> <span class="nav-text">下划线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#go%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BEimport%E7%9A%84package"><span class="nav-number">3.</span> <span class="nav-text">Go如何寻找import的package</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%ADgo111module"><span class="nav-number">3.1.</span> <span class="nav-text">关闭GO111MODULE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AFgo111module"><span class="nav-number">3.2.</span> <span class="nav-text">开启GO111MODULE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">使用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%BC%80%E5%90%AFgo111modules%E6%97%B6import-package"><span class="nav-number">4.1.</span> <span class="nav-text">不开启GO111MODULES时import
+package</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AFgo111modules%E6%97%B6import%E6%9C%AC%E9%A1%B9%E7%9B%AE%E9%87%8C%E7%9A%84package"><span class="nav-number">4.2.</span> <span class="nav-text">开启GO111MODULES时import本项目里的package</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AFgo111modules%E6%97%B6import%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E5%8F%91%E7%9A%84module"><span class="nav-number">4.3.</span> <span class="nav-text">开启GO111MODULES时import第三方开发的Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AFgo111modules%E6%97%B6import%E6%9C%AC%E5%9C%B0%E7%9A%84module"><span class="nav-number">4.4.</span> <span class="nav-text">开启GO111MODULES时import本地的Module</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init%E5%87%BD%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text">init函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">6.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">7.</span> <span class="nav-text">References</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dl"
+      src="/img/Dinosaur.png">
+  <p class="site-author-name" itemprop="name">dl</p>
+  <div class="site-description" itemprop="description">观察着、体验着、前进着</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dlrdaile" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dlrdaile" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/dle467866@gmail.com" title="E-Mail → dle467866@gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/undefined/3c040810/" rel="bookmark">
+        <time class="popular-posts-time">2024-08-11</time>
+        <br>
+      01.Go环境配置
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dlrdaile.github.io/undefined/89a63806/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/Dinosaur.png">
+      <meta itemprop="name" content="dl">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="A乐小屋">
+      <meta itemprop="description" content="观察着、体验着、前进着">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="25.包package和模块Module | A乐小屋">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          25.包package和模块Module
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-12 17:51:30" itemprop="dateCreated datePublished" datetime="2024-08-12T17:51:30+08:00">2024-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-17 10:26:52" itemprop="dateModified" datetime="2025-02-17T10:26:52+08:00">2025-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Golang/" itemprop="url" rel="index"><span itemprop="name">Golang</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>本文主要介绍Go的包package和模块Module的使用方法，包括package的定义、import语法、Go如何寻找import的package、init函数、注意事项等。
+<span id="more"></span> # 包package和模块Module</p>
+<h2 id="package定义">package定义</h2>
+<p>package本质上就是一个目录，目录里包含有一个或者多个Go源程序文件，或者package。也就是说package里面还可以嵌套包含子package。</p>
+<p>每个Go源文件都属于一个package，在源文件开头指定package名称</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> package_name</span><br></pre></td></tr></table></figure>
+<p>package的代码结构示例如下：</p>
+<figure>
+<img
+src="https://dl-poke.oss-cn-beijing.aliyuncs.com/pokepackage_structure.jpg"
+alt="package_structure" />
+<figcaption aria-hidden="true">package_structure</figcaption>
+</figure>
+<p>package里的变量、函数、结构体、方法等如果要被本package外的程序引用，需要在命名的时候首字母大写。</p>
+<p>如果首字母小写，那就只能在同一个package里面被使用。</p>
+<p><strong>注意</strong>：这里说的是同一个package，不是同一个文件。同一个package下，如果有多个源程序文件是声明的该package，那这些源程序文件里的变量、函数、结构体等，即使不是首字母大写，也可以互相跨文件直接调用，不用额外import。</p>
+<p>package的使用分为4类情况：</p>
+<ul>
+<li>使用Go标准库自带的package，比如fmt。</li>
+<li>使用go get获取到的第三方package/module</li>
+<li>使用项目内部的package</li>
+<li>使用其它项目的package/module</li>
+</ul>
+<h2 id="import语法示例">import语法示例</h2>
+<h3 id="普通">普通</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span>                           <span class="comment">// 标准库</span></span><br><span class="line">	<span class="string">&quot;sync/atomic&quot;</span>                   <span class="comment">// 标准库sync的atomic子package</span></span><br><span class="line">	<span class="string">&quot;package1&quot;</span>                      <span class="comment">// 自开发的package</span></span><br><span class="line">	<span class="string">&quot;package2/package21&quot;</span>            <span class="comment">// 自开发package，嵌套子package</span></span><br><span class="line">	<span class="string">&quot;package2/package22&quot;</span>            <span class="comment">// 自开发package，嵌套子package</span></span><br><span class="line">	<span class="string">&quot;package3/package31/package311&quot;</span> <span class="comment">// 自开发package，多重嵌套</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>使用import路径里面定义的<strong>package名称</strong>来访问package里的方法，结构体等，而不是路径名称。</p>
+<p>举个例子，假设上面import的路径package2/package21这个目录下的Go源程序文件开头声明的package名称是realpackage，那访问这个package里的方法，结构体等要用realpackage.xxx来访问，而不是用package21.xxx来访问。</p>
+<p>一句话总结：<strong>import的是路径，访问用package名称</strong>。最佳实践就是让两者保持一致。</p>
+<h3 id="别名">别名</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    newName <span class="string">&quot;package2/package21&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>可以用别名newName来访问package里的成员，newName.xxx。这个在包名很长或者包名有重复的时候可以用到。</p>
+<h3 id="点操作">点操作</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    . <span class="string">&quot;package2/package21&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><code>.</code>可以让后面的package里的成员注册到当前包的上下文，这样就可以直接调用成员名，不需要加包前缀了。</p>
+<p>比如以前要用package21.Hello()来调用package21这个包里的函数Hello，用了点操作后，可以直接调用函数Hello()，前面不用跟package名称。</p>
+<h3 id="下划线">下划线</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    _ <span class="string">&quot;package2/package21&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>下划线<code>_</code>的效果：只会执行包里各个源程序文件的init方法，没法调用包里的成员。</p>
+<h2 id="go如何寻找import的package">Go如何寻找import的package</h2>
+<p>在代码里import某个package的时候，Go是如何去寻找对应的package呢？这个和Go环境变量GO111MODULE有关系。GO111MODULE的值可以通过如下命令查到</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> env | grep GO111MODULE</span><br></pre></td></tr></table></figure>
+<p>on表示开启，off表示关闭。GO111MODULE是从Go
+1.11开始引入，在随后的Go版本中Go Modules的行为有一些变化，具体可以参考<a
+target="_blank" rel="noopener" href="https://maelvls.dev/go111module-everywhere/#go111module-with-go-116">GO111MODULE
+and Go Modules</a>。</p>
+<p>下面以Go1.16及以上版本详细讲下GO111MODULE关闭和开启的情况下，Go是如何寻找import的package的。</p>
+<h3 id="关闭go111module">关闭GO111MODULE</h3>
+<ul>
+<li><p>先从<span
+class="math inline">\(GOROOT/src里找。\)</span>GOROOT是Go的安装路径，<span
+class="math inline">\(GOROOT/src是Go标准库存放的路径，比如fmt,
+strings等package都存放在\)</span>GOROOT/src里。$GOROOT的路径可以通过下面的命令查看到：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> env | grep ROOT <span class="comment">// linux or mac</span></span><br><span class="line"><span class="keyword">go</span> env | findstr ROOT <span class="comment">// windows</span></span><br></pre></td></tr></table></figure></li>
+<li><p>如果从<span
+class="math inline">\(GOROOT/src找不到，再从\)</span>GOPATH/src里找。$GOPATH是安装Go后就会有的一个环境变量，Linux和Mac的默认路径是/Users/用户名/go，WIndows默认路径是C:/Users/用户名/go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> env | grep PATH <span class="comment">// linux or mac</span></span><br><span class="line"><span class="keyword">go</span> env | findstr PATH <span class="comment">// windows</span></span><br></pre></td></tr></table></figure>
+<p>在Go 1.11之前，还没有Go
+Modules，如果想import一些自己开发的package，被import的package必须建在<span
+class="math inline">\(GOPATH/src路径下。一般而言，一个工程项目一定会有自己写的若干个package，因此这也导致工程项目本身也通常建在了\)</span>GOPATH/src路径下。</p></li>
+</ul>
+<h3 id="开启go111module">开启GO111MODULE</h3>
+<p>Go 1.11开始，有了Go
+Modules，工程项目可以建在任何地方，代码在import某个package的时候，会按照如下顺序寻找package：</p>
+<ul>
+<li><p>先从$GOROOT/src/路径找。(Go标准库会在这个路径找到)</p></li>
+<li><p>再从$GOPATH/pkg/mod/路径找。(Go第三方库会在这个路径找到)</p></li>
+<li><p>如果都找不到，再看当前项目有没有go.mod文件，有的话就从go.mod文件里指定的模块所在路径往下找。如果没有go.mod文件，那就直接提示package
+xxx is not in GOROOT。(自己开发的本地库可以通过这个方式找到)</p></li>
+</ul>
+<p>官方推荐使用Go
+Modules，从Go1.16版本开始，GO111MODULE环境变量默认开启为on模式。</p>
+<h2 id="使用示例">使用示例</h2>
+<h3 id="不开启go111modules时import-package">不开启GO111MODULES时import
+package</h3>
+<ol type="1">
+<li>项目建在$GOPATH/src下面</li>
+<li>import package的时候路径从$GOPATH/src往下找</li>
+</ol>
+<p>使用说明参考<a
+target="_blank" rel="noopener" href="https://github.com/jincheng9/go-tutorial/tree/main/workspace/lesson27/gopath/">gopath
+package demo</a></p>
+<h3
+id="开启go111modules时import本项目里的package">开启GO111MODULES时import本项目里的package</h3>
+<ol type="1">
+<li><p>项目可以建在任何地方</p></li>
+<li><p>在项目所在根目录创建go.mod文件, module_name是模块名称</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> mod init module_name</span><br></pre></td></tr></table></figure></li>
+<li><p>import项目本地的package时指定go.mod文件里的模块名称</p>
+<p>比如module_name叫project，在这个模块里，main.go使用了本项目里的util包，那在main.go里按照如下格式import这个package</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;project/util&quot;</span> <span class="comment">// project是模块名称, util是这个模块下的本地package</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>使用说明参考<a
+target="_blank" rel="noopener" href="https://github.com/jincheng9/go-tutorial/tree/main/workspace/lesson27/module">module
+package demo</a></p>
+<h3
+id="开启go111modules时import第三方开发的module">开启GO111MODULES时import第三方开发的Module</h3>
+<ol type="1">
+<li><p>项目可以建在任何地方</p></li>
+<li><p>在项目所在根目录创建go.mod文件</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> mod init module_name</span><br></pre></td></tr></table></figure></li>
+<li><p>下载所需第三方Module，比如gin</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> get -u github.com/gin-gonic/gin</span><br></pre></td></tr></table></figure></li>
+<li><p>代码里import对应的Module</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;github.com/gin-gonic/gin&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>tips</strong>:
+<code>go mod tidy</code>命令可以更新go.mod里的依赖内容，比如go.mod里少写了依赖的module，就可以执行该命令自动更新go.mod，在go.mod所在目录执行如下命令即可：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> mod tidy</span><br></pre></td></tr></table></figure>
+<h3
+id="开启go111modules时import本地的module">开启GO111MODULES时import本地的Module</h3>
+<p>首先，Go官方并不推荐这种用法。import本地的module需要借助<code>replace</code>指令来实现。</p>
+<p>举个例子，本地有2个模块<code>module1</code>和<code>module2</code>，<code>module1</code>要使用<code>module2</code>里的<code>Add</code>函数，目录结构为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">replace_module_demo</span><br><span class="line">|</span><br><span class="line">|------module1</span><br><span class="line">|        |---main.go</span><br><span class="line">|        |---go.mod        </span><br><span class="line">|------module2</span><br><span class="line">|        |---func.go</span><br><span class="line">|        |---go.mod</span><br></pre></td></tr></table></figure>
+<p><code>module1</code>要使用<code>module2</code>里的<code>Add</code>函数，需要做2个事情：</p>
+<ul>
+<li>在<code>module1</code>代码里添加对
+<code>module2</code>的import。具体表现为下面的代码示例里module1/main.go里import了<code>module2</code>。</li>
+<li>在<code>module1</code>的<code>go.mod</code>里添加<code>require</code>和<code>replace</code>指令，把对<code>module2</code>的import通过<code>replace</code>指令指向本地的<code>module2</code>路径。具体参考module1/go.mod里的require和replace指令。</li>
+</ul>
+<p>代码如下：</p>
+<p>module1/main.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="comment">// 模块module1要使用本地模块module2里的Add函数</span></span><br><span class="line">	<span class="comment">// 这里被import的本地模块的名称要和module2/go.mod里保持一致</span></span><br><span class="line">	<span class="string">&quot;module2&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := <span class="number">1</span></span><br><span class="line">	b := <span class="number">2</span></span><br><span class="line">	sum := module2.Add(a, b)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;sum of %d and %d is %d\n&quot;</span>, a, b, sum)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>module1/go.mod，<strong>注意require后面的module必须指定版本号</strong>，版本号以
+<code>v</code>开头，后面是由<code>.</code>分隔的3个整数组成，比如<code>v1.0.0</code>。3个整数从左往右，分别表示大版本号(major
+version)，小版本号(minor version)和补丁版本(patch version)。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module module1</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="number">1.16</span></span><br><span class="line"></span><br><span class="line">require module2 v1<span class="number">.0</span><span class="number">.0</span></span><br><span class="line"></span><br><span class="line">replace module2 =&gt; ../module2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>module2/func.go</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> module2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Add</span><span class="params">(a, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>module2/go.mod</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module module2</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="number">1.16</span></span><br></pre></td></tr></table></figure>
+<p>在module1路径下执行<code>go run main.go</code>，结果为</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum of 1 and 2 is 3</span><br></pre></td></tr></table></figure>
+<p>代码开源地址：<a
+target="_blank" rel="noopener" href="https://github.com/jincheng9/go-tutorial/tree/main/workspace/lesson27/replace_module_demo">demo
+for using local module</a></p>
+<h2 id="init函数">init函数</h2>
+<p>init函数没有参数，没有返回值。</p>
+<ul>
+<li>一个package里可以有多个init函数(分布在单个源程序文件中或者多个源程序文件中)，并且按照它们呈现给编译器的顺序被调用。</li>
+<li>init函数不能被显式调用，在main()函数执行之前，自动被调用</li>
+<li>同一个pacakge里的init函数调用顺序不确定</li>
+<li>不同package的init函数，根据package
+import的依赖关系来决定调用顺序，比如package A里import了package
+B，那package B的init()函数就会比package A的init函数先调用。</li>
+<li><strong>无论package被import多少次，package里的init函数只会执行一次</strong></li>
+</ul>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li><p>package目录名和package目录下的Go源程序文件开头声明的包名可以不一样，不过一般还是写成一样，避免出错。</p></li>
+<li><p>禁止循环导入package。</p></li>
+<li><p>Go Module版本号规则：<a
+target="_blank" rel="noopener" href="https://go.dev/ref/mod#versions">https://go.dev/ref/mod#versions</a>，版本号不符合规则就是非法版本，会导致编译失败。</p></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>https://www.callicoder.com/golang-packages/</li>
+<li>https://www.liwenzhou.com/posts/Go/import_local_package_in_go_module/</li>
+<li>https://maelvls.dev/go111module-everywhere/#go111module-with-go-116</li>
+<li>https://go.dev/ref/mod#go-mod-file-replace</li>
+<li>https://go.dev/ref/mod#versions</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Golang/" rel="tag"><i class="fa fa-tag"></i> Golang</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/undefined/cd2f42bc/" rel="prev" title="24.并发编程之原子操作sync/atomic">
+                  <i class="fa fa-angle-left"></i> 24.并发编程之原子操作sync/atomic
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/undefined/7edf0729/" rel="next" title="26.panic和recover">
+                  26.panic和recover <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">dl</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">48k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:56</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

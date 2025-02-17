@@ -180,7 +180,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">19</span></a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -231,7 +231,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#defer%E8%AF%AD%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text"> defer语义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#defer%E5%90%AB%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text"> defer含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#defer%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">1.2.</span> <span class="nav-text"> defer的用途？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text"> 注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">1.4.</span> <span class="nav-text"> References</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#defer%E5%90%AB%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">defer含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#defer%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">2.</span> <span class="nav-text">defer的用途？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -246,18 +246,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -364,74 +364,57 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>本文主要介绍Go中defer语义的含义和用途，以及注意事项。</p>
-<span id="more"></span>
-<h1 id="defer语义"><a class="markdownIt-Anchor" href="#defer语义"></a> defer语义</h1>
-<h2 id="defer含义"><a class="markdownIt-Anchor" href="#defer含义"></a> defer含义</h2>
+    <div class="post-body" itemprop="articleBody"><p>本文主要介绍Go中defer语义的含义和用途，以及注意事项。 <span id="more"></span> #
+defer语义</p>
+<h2 id="defer含义">defer含义</h2>
 <ul>
-<li>
-<p>defer是延迟的意思，在Go里可以放在某个函数或者方法调用的前面，让该函数或方法延迟执行</p>
-</li>
-<li>
-<p>语法：</p>
+<li><p>defer是延迟的意思，在Go里可以放在某个函数或者方法调用的前面，让该函数或方法延迟执行</p></li>
+<li><p>语法：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">defer</span> function([parameter_list]) <span class="comment">// 延迟执行函数</span></span><br><span class="line"><span class="keyword">defer</span> method([parameter_list]) <span class="comment">// 延迟执行方法</span></span><br></pre></td></tr></table></figure>
-<p>defer本身是在某个函数体内执行，比如在函数A内调用了defer func_name()，只要defer func_name()这行代码被执行到了，那func_name这个函数就会<strong>被延迟到函数A return或者panic之前执行</strong>。</p>
-<p><strong>注意</strong>：如果是函数是因为调用了<code>os.Exit()</code>而退出，那<code>defer</code>就不会被执行了。参见<a target="_blank" rel="noopener" href="https://github.com/jincheng9/go-tutorial/tree/main/workspace/senior/p2">Go语言里被defer的函数一定会执行么？</a></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">defer</span> func_name([parameter_list])</span><br><span class="line"><span class="keyword">defer</span> package_name.func_name([parameter_list]) <span class="comment">// 例如defer fmt.Println(&quot;blabla&quot;)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>如果在函数内调用了<strong>多次defer</strong>，那在函数return之前，defer的函数调用满足LIFO原则，先defer的函数后执行，后defer的函数先执行。比如在函数A内先后执行了defer f1(), defer f2(), defer f3()，那函数A return之前，会按照f3(), f2(), f1()的顺序执行，再return。</p>
-</li>
+<p>defer本身是在某个函数体内执行，比如在函数A内调用了defer
+func_name()，只要defer
+func_name()这行代码被执行到了，那func_name这个函数就会<strong>被延迟到函数A
+return或者panic之前执行</strong>。</p>
+<p><strong>注意</strong>：如果是函数是因为调用了<code>os.Exit()</code>而退出，那<code>defer</code>就不会被执行了。参见<a
+target="_blank" rel="noopener" href="https://github.com/jincheng9/go-tutorial/tree/main/workspace/senior/p2">Go语言里被defer的函数一定会执行么？</a></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">defer</span> func_name([parameter_list])</span><br><span class="line"><span class="keyword">defer</span> package_name.func_name([parameter_list]) <span class="comment">// 例如defer fmt.Println(&quot;blabla&quot;)</span></span><br></pre></td></tr></table></figure></li>
+<li><p>如果在函数内调用了<strong>多次defer</strong>，那在函数return之前，defer的函数调用满足LIFO原则，先defer的函数后执行，后defer的函数先执行。比如在函数A内先后执行了defer
+f1(), defer f2(), defer f3()，那函数A return之前，会按照f3(), f2(),
+f1()的顺序执行，再return。</p></li>
 </ul>
-<h2 id="defer的用途"><a class="markdownIt-Anchor" href="#defer的用途"></a> defer的用途？</h2>
+<h2 id="defer的用途">defer的用途？</h2>
 <p>Answer：defer常用于成对的操作，比如文件打开后要关闭、锁的申请和释放、sync.WaitGroup跟踪的goroutine的计数器的释放等。为了确保资源被释放，可以结合defer一起使用，避免在代码的各种条件分支里去释放资源，容易遗漏和出错。</p>
 <ul>
-<li>
-<p>示例1</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sumN</span><span class="params">(N <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 调用defer wg.Done()确保sumN执行完之后，可以对wg的计数器减1</span></span><br><span class="line">	<span class="keyword">defer</span> wg.Done()</span><br><span class="line">	sum := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">1</span>; i&lt;=N; i++ &#123;</span><br><span class="line">		sum += i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;sum from 1 to %d is %d\n&quot;</span>, N, sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 设置wg跟踪的计数器数量为1</span></span><br><span class="line">	wg.Add(<span class="number">1</span>)</span><br><span class="line">	<span class="comment">// 开启sumN这个goroutine去计算1到100的和</span></span><br><span class="line">	<span class="keyword">go</span> sumN(<span class="number">100</span>)</span><br><span class="line">	<span class="comment">// Wait会一直等待，直到wg的计数器为0</span></span><br><span class="line">	wg.Wait()</span><br><span class="line">	</span><br><span class="line">	fmt.Println(<span class="string">&quot;finish&quot;</span>)		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>defer结合goroutine和闭包一起使用，可以让任务函数内部不用关心Go并发里的同步原语，更多内容可以参考<a href="./workspace/lesson19">goroutine</a>和<a href="./workspace/lesson21">sync.WaitGroup</a></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">worker</span><span class="params">(id <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">    fmt.Println(id)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">    size := <span class="number">10</span></span><br><span class="line">    wg.Add(size)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;size; i++ &#123;</span><br><span class="line">        i := i </span><br><span class="line">        <span class="comment">/*把worker的调用和defer放在一个闭包里</span></span><br><span class="line"><span class="comment">        这样worker函数内部就不用使用WaitGroup了</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">            <span class="keyword">defer</span> wg.Done()</span><br><span class="line">            worker(i)</span><br><span class="line">        &#125;()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    wg.Wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li><p>示例1</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sumN</span><span class="params">(N <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 调用defer wg.Done()确保sumN执行完之后，可以对wg的计数器减1</span></span><br><span class="line">	<span class="keyword">defer</span> wg.Done()</span><br><span class="line">	sum := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">1</span>; i&lt;=N; i++ &#123;</span><br><span class="line">		sum += i</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;sum from 1 to %d is %d\n&quot;</span>, N, sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 设置wg跟踪的计数器数量为1</span></span><br><span class="line">	wg.Add(<span class="number">1</span>)</span><br><span class="line">	<span class="comment">// 开启sumN这个goroutine去计算1到100的和</span></span><br><span class="line">	<span class="keyword">go</span> sumN(<span class="number">100</span>)</span><br><span class="line">	<span class="comment">// Wait会一直等待，直到wg的计数器为0</span></span><br><span class="line">	wg.Wait()</span><br><span class="line">	</span><br><span class="line">	fmt.Println(<span class="string">&quot;finish&quot;</span>)		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>defer结合goroutine和闭包一起使用，可以让任务函数内部不用关心Go并发里的同步原语，更多内容可以参考<a
+href="./workspace/lesson19">goroutine</a>和<a
+href="./workspace/lesson21">sync.WaitGroup</a></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">worker</span><span class="params">(id <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">    fmt.Println(id)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">    size := <span class="number">10</span></span><br><span class="line">    wg.Add(size)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i:=<span class="number">0</span>; i&lt;size; i++ &#123;</span><br><span class="line">        i := i </span><br><span class="line">        <span class="comment">/*把worker的调用和defer放在一个闭包里</span></span><br><span class="line"><span class="comment">        这样worker函数内部就不用使用WaitGroup了</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">            <span class="keyword">defer</span> wg.Done()</span><br><span class="line">            worker(i)</span><br><span class="line">        &#125;()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    wg.Wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h2>
-<ol>
-<li>
-<p>defer后面跟的必须是函数或者方法调用，defer后面的表达式不能加括号。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">defer</span> (fmt.Println(<span class="number">1</span>)) <span class="comment">// 编译报错，因为defer后面跟的表达式不能加括号</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>被defer的函数的参数在执行到defer语句的时候就被确定下来了。</p>
+<h2 id="注意事项">注意事项</h2>
+<ol type="1">
+<li><p>defer后面跟的必须是函数或者方法调用，defer后面的表达式不能加括号。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">defer</span> (fmt.Println(<span class="number">1</span>)) <span class="comment">// 编译报错，因为defer后面跟的表达式不能加括号</span></span><br></pre></td></tr></table></figure></li>
+<li><p>被defer的函数的参数在执行到defer语句的时候就被确定下来了。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">a</span><span class="params">()</span></span> &#123;</span><br><span class="line">    i := <span class="number">0</span></span><br><span class="line">    <span class="keyword">defer</span> fmt.Println(i) <span class="comment">// 最终打印0</span></span><br><span class="line">    i++</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上例中，被defer的函数fmt.Println的参数<strong>i</strong>在执行到defer这一行的时候，<strong>i</strong>的值是0，fmt.Println的参数就被确定下来是0了，因此最终打印的结果是0，而不是1。</p>
-</li>
-<li>
-<p>被defer的函数执行顺序满足LIFO原则，后defer的先执行。</p>
+<p>上例中，被defer的函数fmt.Println的参数<strong>i</strong>在执行到defer这一行的时候，<strong>i</strong>的值是0，fmt.Println的参数就被确定下来是0了，因此最终打印的结果是0，而不是1。</p></li>
+<li><p>被defer的函数执行顺序满足LIFO原则，后defer的先执行。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">b</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">4</span>; i++ &#123;</span><br><span class="line">        <span class="keyword">defer</span> fmt.Print(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上例中，输出的结果是3210，后defer的先执行。</p>
-</li>
-<li>
-<p>被defer的函数可以对defer语句所在的函数的命名返回值做读取和修改操作。</p>
+<p>上例中，输出的结果是3210，后defer的先执行。</p></li>
+<li><p>被defer的函数可以对defer语句所在的函数的命名返回值做读取和修改操作。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// f returns 42</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span></span> (result <span class="type">int</span>) &#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="comment">// result is accessed after it was set to 6 by the return statement</span></span><br><span class="line">		result *= <span class="number">7</span></span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> <span class="number">6</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上例中，被defer的函数func对defer语句所在的函数<strong>f</strong>的命名返回值result做了修改操作。</p>
 <p>调用函数<strong>f</strong>，返回的结果是42。</p>
 <p>执行顺序是函数<strong>f</strong>先把要返回的值6赋值给result，然后执行被defer的函数func，result被修改为42，然后函数<strong>f</strong>返回result，也就是返回了42。</p>
 <p>官方说明如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Each time a <span class="string">&quot;defer&quot;</span> statement executes, the function value and parameters to</span><br><span class="line">the call are evaluated as usual and saved anew but the actual function is not </span><br><span class="line">invoked. Instead, deferred functions are invoked immediately before the </span><br><span class="line">surrounding function returns, in the reverse order they were deferred. That</span><br><span class="line">is, <span class="keyword">if</span> the surrounding function returns through an explicit <span class="keyword">return</span> statement, </span><br><span class="line">deferred functions are executed after any result parameters are set by that </span><br><span class="line"><span class="keyword">return</span> statement but before the function returns to its caller. If a deferred</span><br><span class="line">function value evaluates to <span class="literal">nil</span>, execution panics when the function is </span><br><span class="line">invoked, not when the <span class="string">&quot;defer&quot;</span> statement is executed.</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Each time a <span class="string">&quot;defer&quot;</span> statement executes, the function value and parameters to</span><br><span class="line">the call are evaluated as usual and saved anew but the actual function is not </span><br><span class="line">invoked. Instead, deferred functions are invoked immediately before the </span><br><span class="line">surrounding function returns, in the reverse order they were deferred. That</span><br><span class="line">is, <span class="keyword">if</span> the surrounding function returns through an explicit <span class="keyword">return</span> statement, </span><br><span class="line">deferred functions are executed after any result parameters are set by that </span><br><span class="line"><span class="keyword">return</span> statement but before the function returns to its caller. If a deferred</span><br><span class="line">function value evaluates to <span class="literal">nil</span>, execution panics when the function is </span><br><span class="line">invoked, not when the <span class="string">&quot;defer&quot;</span> statement is executed.</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h2 id="references"><a class="markdownIt-Anchor" href="#references"></a> References</h2>
+<h2 id="references">References</h2>
 <ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://go.dev/blog/defer-panic-and-recover">https://go.dev/blog/defer-panic-and-recover</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://golang.google.cn/ref/spec#Defer_statements">https://golang.google.cn/ref/spec#Defer_statements</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/52718143/is-golang-defer-statement-execute-before-or-after-return-statement">https://stackoverflow.com/questions/52718143/is-golang-defer-statement-execute-before-or-after-return-statement</a></p>
-</li>
+<li><p>https://go.dev/blog/defer-panic-and-recover</p></li>
+<li><p>https://golang.google.cn/ref/spec#Defer_statements</p></li>
+<li><p>https://stackoverflow.com/questions/52718143/is-golang-defer-statement-execute-before-or-after-return-statement</p></li>
 </ul>
 
     </div>
@@ -475,8 +458,8 @@
     <div class="footer-inner">
 
   <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -488,14 +471,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">16k</span>
+    <span title="站点总字数">48k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">58 分钟</span>
+    <span title="站点阅读时长">2:56</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
