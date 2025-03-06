@@ -1141,6 +1141,8 @@ href="https://www.jetbrains.com/help/clion/ros2-tutorial.html#run-debug-pkg">Cli
 <p>进一步，当面临权限校验，日志记录，监控等通用功能时，传统的解决方案往往需要在每个服务中重复实现，这不仅增加了开发成本，也增加了维护成本。</p>
 <p>为了解决这些问题，使得不同服务的开发者可以使用自己熟悉的技术栈专注于自己的业务逻辑，同时又能够享受到微服务架构的优势，需要一个通用的解决方案。而这个解决方案就是dapr。</p>
 <span id="more"></span>
+<p>Github地址：<a
+href="https://github.com/dlrdaile/DramaYouth-Api">https://github.com/dlrdaile/DramaYouth-Api</a></p>
 <h2 id="dapr">Dapr</h2>
 <p><a
 href="https://docs.dapr.io/"><strong>Dapr</strong></a>是一个开源的分布式应用运行时，它提供了一系列的微服务开发的基础设施，如服务发现、负载均衡、服务间通信等。
